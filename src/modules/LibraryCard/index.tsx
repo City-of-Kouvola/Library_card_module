@@ -59,6 +59,7 @@ export const LibraryCardModule = () => {
     );
   }
   if (isLoading) return <></>;
+
   return (
     <Login
       saveDetails={(authCardNumber, authHolderName) =>

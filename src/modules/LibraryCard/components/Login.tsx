@@ -5,6 +5,8 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
+  Image,
+  Linking,
 } from 'react-native';
 import {styles} from './styles';
 import {locales} from '../../../config/locales';
@@ -27,9 +29,6 @@ export const Login = ({saveDetails}: IProps) => {
       return;
     }
     setIsLoading(true);
-    /*     setTimeout(() => {
-      saveDetails(inputCardNumber, 'Pekka Testaaja');
-    }, 3000); */
 
     const response = await fetch(
       'https://kirjasto.kyyti.fi/api/v1/app.pl/api/v1/auth/session',
@@ -45,25 +44,34 @@ export const Login = ({saveDetails}: IProps) => {
     );
 
     if (response.status !== 201) {
-      setErrorMessage('Väärä kortin numero tai salasana');
+      setErrorMessage(locales.invalidCredentials.fi);
       setIsLoading(false);
       return;
     }
-
     const responseJSON = await response.json();
-    const holderName = `${responseJSON.firstname.split(' ')[0]} ${
-      responseJSON.surname
-    }`;
-
-    console.log(responseJSON);
+    const holderName = `${responseJSON.firstname} ${responseJSON.surname}`;
     saveDetails(inputCardNumber, holderName);
     setIsLoading(false);
   };
 
+  const openLink = async () => {
+    const url = locales.libraryLink.fi;
+    const isSupported = await Linking.canOpenURL(url);
+    if (isSupported) await Linking.openURL(url);
+  };
+
   return (
     <View style={styles.loginContainer}>
+      <View style={styles.headerContainer}>
+        <Text style={styles.largeHeaderText}>{locales.kouvolas.fi}</Text>
+        <Text style={styles.smallHeaderText}>{locales.library.fi}</Text>
+      </View>
+      <Text style={styles.loginDescription}>{locales.loginDescription.fi}</Text>
+      <Text style={styles.loginLibraryLink} onPress={openLink}>
+        {locales.libraryLink.fi}
+      </Text>
       {!isLoading ? (
-        <>
+        <View style={styles.loginForm}>
           <Text style={styles.loginTitle}>{locales.loginTitle.fi}</Text>
           <Text>{errorMessage}</Text>
           <TextInput
@@ -90,9 +98,14 @@ export const Login = ({saveDetails}: IProps) => {
             onSubmitEditing={authenticate}
           />
           <TouchableOpacity style={styles.loginButton} onPress={authenticate}>
-            <Text>{locales.loginButton.fi}</Text>
+            <Text style={styles.loginText}>{locales.loginButton.fi}</Text>
           </TouchableOpacity>
-        </>
+          <Image
+            style={styles.loginImage}
+            resizeMode={'contain'}
+            source={require('../../../assets/img/background.png')}
+          />
+        </View>
       ) : (
         <ActivityIndicator size="large" color="#000" />
       )}
