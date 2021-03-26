@@ -4,14 +4,13 @@ export const styles = StyleSheet.create({
   headerContainer: {marginTop: '15%', alignSelf: 'center'},
   largeHeaderText: {
     fontFamily: 'Times New Roman',
-    fontSize: 38,
-    fontWeight: 'bold',
+    fontSize: 45,
     textTransform: 'uppercase',
   },
   smallHeaderText: {
     fontFamily: 'Arial',
-    fontSize: 28,
-    paddingLeft: 40,
+    fontSize: 32,
+    paddingLeft: 50,
     letterSpacing: 2,
   },
   loginDescription: {fontFamily: 'Arial', padding: 20, fontSize: 16},
