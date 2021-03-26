@@ -60,7 +60,7 @@ export const styles = StyleSheet.create({
     color: '#fff',
   },
   logoutButton: {
-    width: 250,
+    width: '45%',
     padding: 10,
     borderRadius: 10,
     alignItems: 'center',
@@ -68,6 +68,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#212121',
     position: 'absolute',
     bottom: 10,
+    left: '5%',
   },
   logoutText: {
     fontSize: 19,
@@ -84,11 +85,28 @@ export const styles = StyleSheet.create({
     height: Dimensions.get('window').width * 0.9,
     width: Dimensions.get('window').height * 0.9,
     justifyContent: 'center',
-    borderWidth: 5,
-    borderRadius: 40,
   },
   libraryCard: {
     marginBottom: '20%',
+  },
+  libraryCardDescription: {
+    fontFamily: 'Arial',
+    width: '50%',
+    position: 'absolute',
+    padding: 25,
+    top: '50%',
+  },
+  imageContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: -150,
+    right: 0,
+    top: '55%',
+    zIndex: -1,
+  },
+  libraryCardImage: {
+    alignSelf: 'center',
+    height: '75%',
   },
   holderName: {
     textAlign: 'center',
