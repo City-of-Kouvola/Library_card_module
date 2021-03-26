@@ -38,8 +38,14 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
           {locales.libraryCardDescription.fi}
         </Text>
 
-        <TouchableOpacity style={styles.logoutButton} onPress={confirmLogout}>
-          <Text style={styles.logoutText}>{locales.logoutButton.fi}</Text>
+        <TouchableOpacity
+          accessible
+          accessibilityLabel={'Paina kirjautuaksesi ulos'}
+          style={styles.logoutButton}
+          onPress={confirmLogout}>
+          <Text accessible style={styles.logoutText}>
+            {locales.logoutButton.fi}
+          </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.imageContainer}>

@@ -67,7 +67,11 @@ export const Login = ({saveDetails}: IProps) => {
         <Text style={styles.smallHeaderText}>{locales.library.fi}</Text>
       </View>
       <Text style={styles.loginDescription}>{locales.loginDescription.fi}</Text>
-      <Text style={styles.loginLibraryLink} onPress={openLink}>
+      <Text
+        accessible
+        accessibilityLabel={`Avaa linkki sivulle ${locales.libraryLink.fi}`}
+        style={styles.loginLibraryLink}
+        onPress={openLink}>
         {locales.libraryLink.fi}
       </Text>
       {!isLoading ? (
@@ -75,6 +79,8 @@ export const Login = ({saveDetails}: IProps) => {
           <Text style={styles.loginTitle}>{locales.loginTitle.fi}</Text>
           <Text>{errorMessage}</Text>
           <TextInput
+            accessible
+            accessibilityLabel={'Syötä kortin numero'}
             style={styles.input}
             onChangeText={inputCardNumber =>
               setInputCardNumber(inputCardNumber)
@@ -88,17 +94,25 @@ export const Login = ({saveDetails}: IProps) => {
             }}
           />
           <TextInput
+            accessible
+            accessibilityLabel={'Syötä salasana'}
             style={styles.input}
             onChangeText={password => setPassword(password)}
             placeholder={locales.password.fi}
             placeholderTextColor="#8b9cb5"
-            secureTextEntry={true}
+            secureTextEntry
             autoCapitalize="none"
             ref={passwordInput}
             onSubmitEditing={authenticate}
           />
-          <TouchableOpacity style={styles.loginButton} onPress={authenticate}>
-            <Text style={styles.loginText}>{locales.loginButton.fi}</Text>
+          <TouchableOpacity
+            accessible
+            accessibilityLabel={'Paina kirjautuaksesi sisään'}
+            style={styles.loginButton}
+            onPress={authenticate}>
+            <Text accessible style={styles.loginText}>
+              {locales.loginButton.fi}
+            </Text>
           </TouchableOpacity>
           <Image
             style={styles.loginImage}
