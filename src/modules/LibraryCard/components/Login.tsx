@@ -7,6 +7,8 @@ import {
   ActivityIndicator,
   Image,
   Linking,
+  ScrollView,
+  KeyboardAvoidingView,
 } from 'react-native';
 import {styles} from './styles';
 import {locales} from '../../../config/locales';
@@ -37,7 +39,6 @@ export const Login = ({saveDetails}: IProps) => {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
           Accept: 'application/json',
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: `cardnumber=${inputCardNumber}&password=${password}`,
       },
@@ -61,68 +62,72 @@ export const Login = ({saveDetails}: IProps) => {
   };
 
   return (
-    <View style={styles.loginContainer}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.largeHeaderText}>{locales.kouvolas.fi}</Text>
-        <Text style={styles.smallHeaderText}>{locales.library.fi}</Text>
-      </View>
-      <Text style={styles.loginDescription}>{locales.loginDescription.fi}</Text>
-      <Text
-        accessible
-        accessibilityLabel={`Avaa linkki sivulle ${locales.libraryLink.fi}`}
-        style={styles.loginLibraryLink}
-        onPress={openLink}>
-        {locales.libraryLink.fi}
-      </Text>
-      {!isLoading ? (
-        <View style={styles.loginForm}>
-          <Text style={styles.loginTitle}>{locales.loginTitle.fi}</Text>
-          <Text>{errorMessage}</Text>
-          <TextInput
-            accessible
-            accessibilityLabel={'Syötä kortin numero'}
-            style={styles.input}
-            onChangeText={inputCardNumber =>
-              setInputCardNumber(inputCardNumber)
-            }
-            placeholder={locales.cardNumber.fi}
-            placeholderTextColor="#8b9cb5"
-            returnKeyType="next"
-            blurOnSubmit={false}
-            onSubmitEditing={() => {
-              passwordInput.current?.focus();
-            }}
-          />
-          <TextInput
-            accessible
-            accessibilityLabel={'Syötä salasana'}
-            style={styles.input}
-            onChangeText={password => setPassword(password)}
-            placeholder={locales.password.fi}
-            placeholderTextColor="#8b9cb5"
-            secureTextEntry
-            autoCapitalize="none"
-            ref={passwordInput}
-            onSubmitEditing={authenticate}
-          />
-          <TouchableOpacity
-            accessible
-            accessibilityLabel={'Paina kirjautuaksesi sisään'}
-            style={styles.loginButton}
-            onPress={authenticate}>
-            <Text accessible style={styles.loginText}>
-              {locales.loginButton.fi}
-            </Text>
-          </TouchableOpacity>
-          <Image
-            style={styles.loginImage}
-            resizeMode={'contain'}
-            source={require('../../../assets/img/background.png')}
-          />
+    <ScrollView style={styles.loginContainer} bounces={false}>
+      <KeyboardAvoidingView>
+        <View style={styles.headerContainer}>
+          <Text style={styles.largeHeaderText}>{locales.kouvolas.fi}</Text>
+          <Text style={styles.smallHeaderText}>{locales.library.fi}</Text>
         </View>
-      ) : (
-        <ActivityIndicator size="large" color="#000" />
-      )}
-    </View>
+        <Text style={styles.loginDescription}>
+          {locales.loginDescription.fi}
+        </Text>
+        <Text
+          accessible
+          accessibilityLabel={`Avaa linkki sivulle ${locales.libraryLink.fi}`}
+          style={styles.loginLibraryLink}
+          onPress={openLink}>
+          {locales.libraryLink.fi}
+        </Text>
+        {!isLoading ? (
+          <View style={styles.loginForm}>
+            <Text style={styles.loginTitle}>{locales.loginTitle.fi}</Text>
+            <Text>{errorMessage}</Text>
+            <TextInput
+              accessible
+              accessibilityLabel={'Syötä kortin numero'}
+              style={styles.input}
+              onChangeText={inputCardNumber =>
+                setInputCardNumber(inputCardNumber)
+              }
+              placeholder={locales.cardNumber.fi}
+              placeholderTextColor="#8b9cb5"
+              returnKeyType="next"
+              blurOnSubmit={false}
+              onSubmitEditing={() => {
+                passwordInput.current?.focus();
+              }}
+            />
+            <TextInput
+              accessible
+              accessibilityLabel={'Syötä salasana'}
+              style={styles.input}
+              onChangeText={password => setPassword(password)}
+              placeholder={locales.password.fi}
+              placeholderTextColor="#8b9cb5"
+              secureTextEntry
+              autoCapitalize="none"
+              ref={passwordInput}
+              onSubmitEditing={authenticate}
+            />
+            <TouchableOpacity
+              accessible
+              accessibilityLabel={'Paina kirjautuaksesi sisään'}
+              style={styles.loginButton}
+              onPress={authenticate}>
+              <Text accessible style={styles.loginText}>
+                {locales.loginButton.fi}
+              </Text>
+            </TouchableOpacity>
+            <Image
+              style={styles.loginImage}
+              resizeMode={'contain'}
+              source={require('../../../assets/img/background.png')}
+            />
+          </View>
+        ) : (
+          <ActivityIndicator size="large" color="#000" />
+        )}
+      </KeyboardAvoidingView>
+    </ScrollView>
   );
 };

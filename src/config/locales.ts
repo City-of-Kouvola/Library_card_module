@@ -13,7 +13,7 @@ export const locales = {
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
   },
   libraryLink: {
-    fi: 'https://kyyti.finna.fi/',
+    fi: 'https://kyyti.finna.fi',
   },
   cardNumber: {
     fi: 'Kortin numero',
