@@ -28,7 +28,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
           <Text style={styles.holderName}>{holderName}</Text>
           <Barcode
             text={cardNumber}
-            width={3}
+            width={2.8}
             height={90}
             value={cardNumber}
             format={'CODE39'}
@@ -42,7 +42,8 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
           accessible
           accessibilityLabel={'Paina kirjautuaksesi ulos'}
           style={styles.logoutButton}
-          onPress={confirmLogout}>
+          onPress={confirmLogout}
+          activeOpacity={0.6}>
           <Text accessible style={styles.logoutText}>
             {locales.logoutButton.fi}
           </Text>

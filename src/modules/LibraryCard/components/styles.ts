@@ -1,7 +1,7 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 export const styles = StyleSheet.create({
-  headerContainer: {marginTop: '15%', alignSelf: 'center'},
+  headerContainer: {marginTop: '2%', alignSelf: 'center'},
   largeHeaderText: {
     fontFamily: 'Times New Roman',
     fontSize: 45,
@@ -25,18 +25,25 @@ export const styles = StyleSheet.create({
   },
   loginForm: {
     alignItems: 'center',
+    margin: 0,
   },
   loginTitle: {
     fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 15,
   },
   loginImage: {
     position: 'absolute',
     top: '15%',
     left: '5%',
-
     zIndex: -1,
+    opacity: 0.5,
+  },
+  errorMessage: {
+    color: 'red',
+    backgroundColor: 'white',
+    fontSize: 16,
+    padding: 12,
+    fontWeight: 'bold',
   },
   input: {
     width: 250,
@@ -78,7 +85,7 @@ export const styles = StyleSheet.create({
     color: '#fff',
   },
   libraryCardContainer: {
-    height: Dimensions.get('window').height,
+    height: Dimensions.get('window').height * 0.88,
     justifyContent: 'center',
     alignSelf: 'center',
   },
@@ -93,9 +100,10 @@ export const styles = StyleSheet.create({
   },
   libraryCardDescription: {
     fontFamily: 'Arial',
-    width: '50%',
+    width: '55%',
     position: 'absolute',
     padding: 25,
+    paddingLeft: 35,
     top: '50%',
   },
   imageContainer: {
