@@ -85,13 +85,13 @@ export const styles = StyleSheet.create({
     color: '#fff',
   },
   libraryCardContainer: {
-    height: Dimensions.get('window').height * 0.88,
+    height: '100%',
     justifyContent: 'center',
     alignSelf: 'center',
   },
   rotatedContainer: {
     transform: [{rotate: '90deg'}],
-    height: Dimensions.get('window').width * 0.9,
+    height: Dimensions.get('window').width * 0.99,
     width: Dimensions.get('window').height * 0.9,
     justifyContent: 'center',
   },
@@ -104,7 +104,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     padding: 25,
     paddingLeft: 35,
-    top: '50%',
+    top: '45%',
   },
   imageContainer: {
     position: 'absolute',

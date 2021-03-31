@@ -28,7 +28,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
           <Text style={styles.holderName}>{holderName}</Text>
           <Barcode
             text={cardNumber}
-            width={2.8}
+            width={2.2}
             height={90}
             value={cardNumber}
             format={'CODE39'}

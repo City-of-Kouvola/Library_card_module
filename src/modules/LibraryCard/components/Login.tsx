@@ -9,6 +9,7 @@ import {
   Linking,
   ScrollView,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import {styles} from './styles';
 import {locales} from '../../../config/locales';
@@ -26,33 +27,38 @@ export const Login = ({saveDetails}: IProps) => {
   const passwordInput = useRef<TextInput>(null);
 
   const authenticate = async () => {
-    if (!inputCardNumber || !password) {
-      setErrorMessage(locales.missingInputs.fi);
-      return;
-    }
-    setIsLoading(true);
+    try {
+      if (!inputCardNumber || !password) {
+        setErrorMessage(locales.missingInputs.fi);
+        return;
+      }
+      setIsLoading(true);
 
-    const response = await fetch(
-      'https://kirjasto.kyyti.fi/api/v1/app.pl/api/v1/auth/session',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          Accept: 'application/json',
+      const response = await fetch(
+        'https://kirjasto.kyyti.fi/api/v1/app.pl/api/v1/auth/session',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Accept: 'application/json',
+          },
+          body: `cardnumber=${inputCardNumber}&password=${password}`,
         },
-        body: `cardnumber=${inputCardNumber}&password=${password}`,
-      },
-    );
+      );
 
-    if (response.status !== 201) {
-      setErrorMessage(locales.invalidCredentials.fi);
+      if (response.status !== 201) {
+        setErrorMessage(locales.invalidCredentials.fi);
+        setIsLoading(false);
+        return;
+      }
+      const responseJSON = await response.json();
+      const holderName = `${responseJSON.firstname} ${responseJSON.surname}`;
+      saveDetails(inputCardNumber, holderName);
       setIsLoading(false);
-      return;
+    } catch (e) {
+      setIsLoading(false);
+      console.log('Error: ', e);
     }
-    const responseJSON = await response.json();
-    const holderName = `${responseJSON.firstname} ${responseJSON.surname}`;
-    saveDetails(inputCardNumber, holderName);
-    setIsLoading(false);
   };
 
   const openLink = async () => {
@@ -66,7 +72,10 @@ export const Login = ({saveDetails}: IProps) => {
       style={styles.loginContainer}
       contentContainerStyle={{flexGrow: 1}}
       bounces={false}>
-      <KeyboardAvoidingView>
+      <KeyboardAvoidingView
+        style={{flex: 1}}
+        enabled
+        behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
         <View style={styles.headerContainer}>
           <Text style={styles.largeHeaderText}>{locales.kouvolas.fi}</Text>
           <Text style={styles.smallHeaderText}>{locales.library.fi}</Text>
