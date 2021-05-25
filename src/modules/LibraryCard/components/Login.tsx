@@ -77,8 +77,9 @@ export const Login = ({saveDetails}: IProps) => {
         enabled
         behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
         <View style={styles.headerContainer}>
-          <Text style={styles.largeHeaderText}>{locales.kouvolas.fi}</Text>
-          <Text style={styles.smallHeaderText}>{locales.library.fi}</Text>
+          <Image
+            source={require('../../../assets/img/yleisten-kirjastojen-tunnus-fi.png')}
+          />
         </View>
         <Text style={styles.loginDescription}>
           {locales.loginDescription.fi}
@@ -133,11 +134,6 @@ export const Login = ({saveDetails}: IProps) => {
                 {locales.loginButton.fi}
               </Text>
             </TouchableOpacity>
-            <Image
-              style={styles.loginImage}
-              resizeMode={'contain'}
-              source={require('../../../assets/img/background.png')}
-            />
           </View>
         ) : (
           <ActivityIndicator size="large" color="#000" />

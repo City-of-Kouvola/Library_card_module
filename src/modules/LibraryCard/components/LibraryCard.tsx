@@ -53,7 +53,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
         <Image
           style={styles.libraryCardImage}
           resizeMode={'contain'}
-          source={require('../../../assets/img/background.png')}
+          source={require('../../../assets/img/villirilli.png')}
         />
       </View>
     </View>

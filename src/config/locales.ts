@@ -6,14 +6,13 @@ export const locales = {
   },
   loginDescription: {
     fi:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
+      'Kouvolan kaupunginkirjaston sähköinen kirjastokortti. Käytä lainaamiseen automaatilla, palvelutiskillä ja omatoimikirjastojen sisäänpääsyyn.​',
   },
   libraryCardDescription: {
-    fi:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation',
+    fi: 'Sitoudun noudattamaan kirjaston käyttösääntöjä.',
   },
   libraryLink: {
-    fi: 'https://kyyti.finna.fi',
+    fi: 'kyyti.finna.fi',
   },
   cardNumber: {
     fi: 'Kortin numero',

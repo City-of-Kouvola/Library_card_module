@@ -86,8 +86,8 @@ export const styles = StyleSheet.create({
   },
   libraryCardContainer: {
     height: '100%',
-    justifyContent: 'center',
     alignSelf: 'center',
+    justifyContent: 'center',
   },
   rotatedContainer: {
     transform: [{rotate: '90deg'}],
@@ -100,23 +100,25 @@ export const styles = StyleSheet.create({
   },
   libraryCardDescription: {
     fontFamily: 'Arial',
+    fontSize: 23,
     width: '55%',
     position: 'absolute',
-    padding: 25,
-    paddingLeft: 35,
+    padding: 35,
+    paddingLeft: 45,
     top: '45%',
   },
   imageContainer: {
     position: 'absolute',
-    bottom: 0,
-    left: -150,
-    right: 0,
-    top: '55%',
+    left: Dimensions.get('window').height * 0.25,
+    top: Dimensions.get('window').height * 0.55,
+    height: '30%',
+    width: '30%',
     zIndex: -1,
   },
   libraryCardImage: {
-    alignSelf: 'center',
-    height: '75%',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    transform: [{rotate: '90deg'}],
   },
   holderName: {
     textAlign: 'center',
