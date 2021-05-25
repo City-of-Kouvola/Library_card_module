@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Alert, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Alert,
+  Image,
+  Dimensions,
+} from 'react-native';
 import Barcode from 'react-native-barcode-builder';
 import {locales} from '../../../config/locales';
 import {styles} from './styles';
@@ -12,6 +19,8 @@ interface IProps {
 
 export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
   const confirmLogout = () => {
+    console.log(Dimensions.get('window').width);
+    console.log(Dimensions.get('window').height);
     Alert.alert(locales.confirmLogout.fi, '', [
       {
         text: locales.cancel.fi,

@@ -1,4 +1,7 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, Platform} from 'react-native';
+
+const HeaderFont = 'Roboto';
+const textFont = 'Roboto';
 
 export const styles = StyleSheet.create({
   headerContainer: {marginTop: '2%', alignSelf: 'center'},
@@ -8,14 +11,23 @@ export const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   smallHeaderText: {
-    fontFamily: 'Arial',
+    fontFamily: textFont,
     fontSize: 32,
     paddingLeft: 45,
     letterSpacing: 2,
   },
-  loginDescription: {fontFamily: 'Arial', padding: 20, fontSize: 16},
+  loginHeaderImage: {maxWidth: '70%'},
+  loginDescription: {
+    width: '90%',
+    alignSelf: 'center',
+    fontFamily: textFont,
+    textAlign: 'center',
+    padding: 20,
+    paddingTop: 0,
+    fontSize: 18,
+  },
   loginLibraryLink: {
-    fontFamily: 'Arial',
+    fontFamily: textFont,
     alignSelf: 'center',
     color: 'blue',
     marginBottom: 10,
@@ -99,7 +111,7 @@ export const styles = StyleSheet.create({
     marginBottom: '20%',
   },
   libraryCardDescription: {
-    fontFamily: 'Arial',
+    fontFamily: textFont,
     fontSize: 23,
     width: '55%',
     position: 'absolute',
@@ -109,10 +121,21 @@ export const styles = StyleSheet.create({
   },
   imageContainer: {
     position: 'absolute',
-    left: Dimensions.get('window').height * 0.25,
+    ...Platform.select({
+      ios: {
+        left:
+          Dimensions.get('window').width > 400
+            ? Dimensions.get('window').height * 0.26
+            : Dimensions.get('window').height * 0.24,
+      },
+      android: {
+        left: Dimensions.get('window').height * 0.2,
+      },
+    }),
+
     top: Dimensions.get('window').height * 0.55,
     height: '30%',
-    width: '30%',
+    width: Dimensions.get('window').width > 400 ? '35%' : '30%',
     zIndex: -1,
   },
   libraryCardImage: {

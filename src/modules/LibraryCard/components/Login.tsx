@@ -78,6 +78,8 @@ export const Login = ({saveDetails}: IProps) => {
         behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
         <View style={styles.headerContainer}>
           <Image
+            resizeMode="contain"
+            style={styles.loginHeaderImage}
             source={require('../../../assets/img/yleisten-kirjastojen-tunnus-fi.png')}
           />
         </View>
