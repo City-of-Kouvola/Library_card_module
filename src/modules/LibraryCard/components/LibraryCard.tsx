@@ -19,8 +19,6 @@ interface IProps {
 
 export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
   const confirmLogout = () => {
-    console.log(Dimensions.get('window').width);
-    console.log(Dimensions.get('window').height);
     Alert.alert(locales.confirmLogout.fi, '', [
       {
         text: locales.cancel.fi,
