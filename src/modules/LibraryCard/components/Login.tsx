@@ -132,7 +132,7 @@ export const Login = ({saveDetails}: IProps) => {
               style={styles.loginButton}
               onPress={authenticate}
               activeOpacity={0.6}>
-              <Text accessible style={styles.loginText}>
+              <Text accessible style={styles.buttonText}>
                 {locales.loginButton.fi}
               </Text>
             </TouchableOpacity>

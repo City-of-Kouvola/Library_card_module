@@ -51,7 +51,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
           style={styles.logoutButton}
           onPress={confirmLogout}
           activeOpacity={0.6}>
-          <Text accessible style={styles.logoutText}>
+          <Text accessible style={styles.buttonText}>
             {locales.logoutButton.fi}
           </Text>
         </TouchableOpacity>

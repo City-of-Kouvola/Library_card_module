@@ -40,6 +40,7 @@ export const styles = StyleSheet.create({
     margin: 0,
   },
   loginTitle: {
+    fontFamily: HeaderFont,
     fontSize: 28,
     fontWeight: 'bold',
   },
@@ -76,11 +77,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#212121',
   },
-  loginText: {
-    fontSize: 19,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
+
   logoutButton: {
     width: '45%',
     padding: 10,
@@ -92,7 +89,8 @@ export const styles = StyleSheet.create({
     bottom: 10,
     left: '5%',
   },
-  logoutText: {
+  buttonText: {
+    fontFamily: textFont,
     fontSize: 19,
     fontWeight: 'bold',
     color: '#fff',
@@ -113,7 +111,7 @@ export const styles = StyleSheet.create({
   },
   libraryCardDescription: {
     fontFamily: textFont,
-    fontSize: 23,
+    fontSize: 21,
     width: '55%',
     position: 'absolute',
     padding: 35,
@@ -130,7 +128,10 @@ export const styles = StyleSheet.create({
             : Dimensions.get('window').height * 0.24,
       },
       android: {
-        left: Dimensions.get('window').height * 0.2,
+        left:
+          Dimensions.get('window').width > 380
+            ? Dimensions.get('window').height * 0.25
+            : Dimensions.get('window').height * 0.2,
       },
     }),
 
