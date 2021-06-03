@@ -28,6 +28,10 @@
 		DFA7B7E63E064AD58377B100 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E24CDE5DC7F24FC0AEBB2CF3 /* Roboto-Italic.ttf */; };
 		FAD49350F3144E67841AE4B9 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7041171ED2634AADBB513DA6 /* Roboto-Medium.ttf */; };
 		FC5DB14B7522435A938E3A5C /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 587128F8D6D94E58ACECCED9 /* Roboto-BlackItalic.ttf */; };
+		DAD199A453E84788ACF0396D /* GT-Pressura-Mono-LC-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A919473C5EEA45ABA2EDAED5 /* GT-Pressura-Mono-LC-Bold.otf */; };
+		13124D3B9F93450B89356116 /* GT-Pressura-Mono-LC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F273E762B4342EC9218BD10 /* GT-Pressura-Mono-LC-Bold.ttf */; };
+		E61E1DA799674ED3A0CA8BE2 /* GT-Pressura-Mono-LC-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D3711F9EDD2B4BD2BF2A7326 /* GT-Pressura-Mono-LC-Regular.otf */; };
+		D7A0F8173FD34E54B7B256E6 /* GT-Pressura-Mono-LC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC655E3EC9984C9EAC6A800F /* GT-Pressura-Mono-LC-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +76,10 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FB0C88B4DF2543BB916F7FBC /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../src/assets/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; };
 		FE474E0259EA479FBBE9A3B7 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BoldItalic.ttf"; path = "../src/assets/fonts/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		A919473C5EEA45ABA2EDAED5 /* GT-Pressura-Mono-LC-Bold.otf */ = {isa = PBXFileReference; name = "GT-Pressura-Mono-LC-Bold.otf"; path = "../src/assets/fonts/GT-Pressura-Mono-LC-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0F273E762B4342EC9218BD10 /* GT-Pressura-Mono-LC-Bold.ttf */ = {isa = PBXFileReference; name = "GT-Pressura-Mono-LC-Bold.ttf"; path = "../src/assets/fonts/GT-Pressura-Mono-LC-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D3711F9EDD2B4BD2BF2A7326 /* GT-Pressura-Mono-LC-Regular.otf */ = {isa = PBXFileReference; name = "GT-Pressura-Mono-LC-Regular.otf"; path = "../src/assets/fonts/GT-Pressura-Mono-LC-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DC655E3EC9984C9EAC6A800F /* GT-Pressura-Mono-LC-Regular.ttf */ = {isa = PBXFileReference; name = "GT-Pressura-Mono-LC-Regular.ttf"; path = "../src/assets/fonts/GT-Pressura-Mono-LC-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +202,10 @@
 				EA6E6723E3D54833974A1587 /* Roboto-Regular.ttf */,
 				C4B27BFE4F904A27B8C22DEE /* Roboto-Thin.ttf */,
 				BC060AF716994EF5B57DE124 /* Roboto-ThinItalic.ttf */,
+				A919473C5EEA45ABA2EDAED5 /* GT-Pressura-Mono-LC-Bold.otf */,
+				0F273E762B4342EC9218BD10 /* GT-Pressura-Mono-LC-Bold.ttf */,
+				D3711F9EDD2B4BD2BF2A7326 /* GT-Pressura-Mono-LC-Regular.otf */,
+				DC655E3EC9984C9EAC6A800F /* GT-Pressura-Mono-LC-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -308,6 +320,10 @@
 				5B39BD3F4CF441E1A6C4B270 /* Roboto-Regular.ttf in Resources */,
 				6E00FDA53DCE4C4D813C4C6A /* Roboto-Thin.ttf in Resources */,
 				58B2E60F6BAE4FA49F4D14D5 /* Roboto-ThinItalic.ttf in Resources */,
+				DAD199A453E84788ACF0396D /* GT-Pressura-Mono-LC-Bold.otf in Resources */,
+				13124D3B9F93450B89356116 /* GT-Pressura-Mono-LC-Bold.ttf in Resources */,
+				E61E1DA799674ED3A0CA8BE2 /* GT-Pressura-Mono-LC-Regular.otf in Resources */,
+				D7A0F8173FD34E54B7B256E6 /* GT-Pressura-Mono-LC-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

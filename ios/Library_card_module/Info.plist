@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Arial.ttf</string>
@@ -53,6 +53,10 @@
 		<string>Roboto-Regular.ttf</string>
 		<string>Roboto-Thin.ttf</string>
 		<string>Roboto-ThinItalic.ttf</string>
+		<string>GT-Pressura-Mono-LC-Bold.otf</string>
+		<string>GT-Pressura-Mono-LC-Bold.ttf</string>
+		<string>GT-Pressura-Mono-LC-Regular.otf</string>
+		<string>GT-Pressura-Mono-LC-Regular.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

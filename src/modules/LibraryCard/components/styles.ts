@@ -1,6 +1,6 @@
 import {StyleSheet, Dimensions, Platform} from 'react-native';
 
-const HeaderFont = 'Roboto';
+const HeaderFont = 'GT Pressura Mono LC';
 const textFont = 'Roboto';
 
 export const styles = StyleSheet.create({
