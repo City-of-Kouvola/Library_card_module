@@ -1,6 +1,7 @@
 import {StyleSheet, Dimensions, Platform} from 'react-native';
 
-const HeaderFont = 'GT Pressura Mono LC';
+const HeaderFont =
+  Platform.OS === 'ios' ? 'GT Pressura Mono LC' : 'GT-Pressura-Mono-LC-Bold';
 const textFont = 'Roboto';
 
 export const styles = StyleSheet.create({
@@ -42,7 +43,11 @@ export const styles = StyleSheet.create({
   loginTitle: {
     fontFamily: HeaderFont,
     fontSize: 28,
-    fontWeight: 'bold',
+    ...Platform.select({
+      ios: {
+        fontWeight: 'bold',
+      },
+    }),
   },
   loginImage: {
     position: 'absolute',
