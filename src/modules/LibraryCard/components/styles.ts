@@ -117,7 +117,7 @@ export const styles = StyleSheet.create({
   libraryCardDescription: {
     fontFamily: textFont,
     fontSize: 21,
-    width: '55%',
+    width: '60%',
     position: 'absolute',
     padding: 35,
     paddingLeft: 45,
@@ -134,9 +134,9 @@ export const styles = StyleSheet.create({
       },
       android: {
         left:
-          Dimensions.get('window').width > 380
-            ? Dimensions.get('window').height * 0.25
-            : Dimensions.get('window').height * 0.2,
+          Dimensions.get('window').width > 410
+            ? Dimensions.get('window').height * 0.2
+            : Dimensions.get('window').height * 0.25,
       },
     }),
 
