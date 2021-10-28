@@ -35,7 +35,7 @@ export const Login = ({saveDetails}: IProps) => {
       setIsLoading(true);
 
       const response = await fetch(
-        'https://kirjasto.kyyti.fi/api/v1/app.pl/api/v1/auth/session',
+        'https://kyyti.koha-suomi.fi/api/v1/auth/session',
         {
           method: 'POST',
           headers: {
