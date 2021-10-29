@@ -35,7 +35,7 @@ export const Login = ({saveDetails}: IProps) => {
       setIsLoading(true);
 
       const response = await fetch(
-        'https://kirjasto.kyyti.fi/api/v1/app.pl/api/v1/auth/session',
+        'https://kyyti.koha-suomi.fi/api/v1/auth/session',
         {
           method: 'POST',
           headers: {
@@ -77,8 +77,11 @@ export const Login = ({saveDetails}: IProps) => {
         enabled
         behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
         <View style={styles.headerContainer}>
-          <Text style={styles.largeHeaderText}>{locales.kouvolas.fi}</Text>
-          <Text style={styles.smallHeaderText}>{locales.library.fi}</Text>
+          <Image
+            resizeMode="contain"
+            style={styles.loginHeaderImage}
+            source={require('../../../assets/img/yleisten-kirjastojen-tunnus-fi.png')}
+          />
         </View>
         <Text style={styles.loginDescription}>
           {locales.loginDescription.fi}
@@ -129,15 +132,10 @@ export const Login = ({saveDetails}: IProps) => {
               style={styles.loginButton}
               onPress={authenticate}
               activeOpacity={0.6}>
-              <Text accessible style={styles.loginText}>
+              <Text accessible style={styles.buttonText}>
                 {locales.loginButton.fi}
               </Text>
             </TouchableOpacity>
-            <Image
-              style={styles.loginImage}
-              resizeMode={'contain'}
-              source={require('../../../assets/img/background.png')}
-            />
           </View>
         ) : (
           <ActivityIndicator size="large" color="#000" />

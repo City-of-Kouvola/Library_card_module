@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Alert, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Alert,
+  Image,
+  Dimensions,
+} from 'react-native';
 import Barcode from 'react-native-barcode-builder';
 import {locales} from '../../../config/locales';
 import {styles} from './styles';
@@ -44,7 +51,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
           style={styles.logoutButton}
           onPress={confirmLogout}
           activeOpacity={0.6}>
-          <Text accessible style={styles.logoutText}>
+          <Text accessible style={styles.buttonText}>
             {locales.logoutButton.fi}
           </Text>
         </TouchableOpacity>
@@ -53,7 +60,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
         <Image
           style={styles.libraryCardImage}
           resizeMode={'contain'}
-          source={require('../../../assets/img/background.png')}
+          source={require('../../../assets/img/villirilli.png')}
         />
       </View>
     </View>
