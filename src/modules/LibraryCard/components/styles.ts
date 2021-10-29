@@ -1,21 +1,34 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, Platform} from 'react-native';
+
+const HeaderFont =
+  Platform.OS === 'ios' ? 'GT Pressura Mono LC' : 'GT-Pressura-Mono-LC-Bold';
+const textFont = 'Roboto';
 
 export const styles = StyleSheet.create({
-  headerContainer: {marginTop: '15%', alignSelf: 'center'},
+  headerContainer: {marginTop: '2%', alignSelf: 'center'},
   largeHeaderText: {
     fontFamily: 'Times New Roman',
     fontSize: 45,
     textTransform: 'uppercase',
   },
   smallHeaderText: {
-    fontFamily: 'Arial',
+    fontFamily: textFont,
     fontSize: 32,
     paddingLeft: 45,
     letterSpacing: 2,
   },
-  loginDescription: {fontFamily: 'Arial', padding: 20, fontSize: 16},
+  loginHeaderImage: {maxWidth: '70%'},
+  loginDescription: {
+    width: '90%',
+    alignSelf: 'center',
+    fontFamily: textFont,
+    textAlign: 'center',
+    padding: 20,
+    paddingTop: 0,
+    fontSize: 18,
+  },
   loginLibraryLink: {
-    fontFamily: 'Arial',
+    fontFamily: textFont,
     alignSelf: 'center',
     color: 'blue',
     marginBottom: 10,
@@ -25,18 +38,30 @@ export const styles = StyleSheet.create({
   },
   loginForm: {
     alignItems: 'center',
+    margin: 0,
   },
   loginTitle: {
+    fontFamily: HeaderFont,
     fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 15,
+    ...Platform.select({
+      ios: {
+        fontWeight: 'bold',
+      },
+    }),
   },
   loginImage: {
     position: 'absolute',
     top: '15%',
     left: '5%',
-
     zIndex: -1,
+    opacity: 0.5,
+  },
+  errorMessage: {
+    color: 'red',
+    backgroundColor: 'white',
+    fontSize: 16,
+    padding: 12,
+    fontWeight: 'bold',
   },
   input: {
     width: 250,
@@ -46,6 +71,7 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
     borderWidth: 1,
     borderColor: 'black',
+    color: 'black',
     borderRadius: 5,
     backgroundColor: 'white',
   },
@@ -56,11 +82,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#212121',
   },
-  loginText: {
-    fontSize: 19,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
+
   logoutButton: {
     width: '45%',
     padding: 10,
@@ -72,19 +94,20 @@ export const styles = StyleSheet.create({
     bottom: 10,
     left: '5%',
   },
-  logoutText: {
+  buttonText: {
+    fontFamily: textFont,
     fontSize: 19,
     fontWeight: 'bold',
     color: '#fff',
   },
   libraryCardContainer: {
-    height: Dimensions.get('window').height,
-    justifyContent: 'center',
+    height: '100%',
     alignSelf: 'center',
+    justifyContent: 'center',
   },
   rotatedContainer: {
     transform: [{rotate: '90deg'}],
-    height: Dimensions.get('window').width * 0.9,
+    height: Dimensions.get('window').width * 0.99,
     width: Dimensions.get('window').height * 0.9,
     justifyContent: 'center',
   },
@@ -92,23 +115,40 @@ export const styles = StyleSheet.create({
     marginBottom: '20%',
   },
   libraryCardDescription: {
-    fontFamily: 'Arial',
-    width: '50%',
+    fontFamily: textFont,
+    fontSize: 21,
+    width: '60%',
     position: 'absolute',
-    padding: 25,
-    top: '50%',
+    padding: 35,
+    paddingLeft: 45,
+    top: '45%',
   },
   imageContainer: {
     position: 'absolute',
-    bottom: 0,
-    left: -150,
-    right: 0,
-    top: '55%',
+    ...Platform.select({
+      ios: {
+        left:
+          Dimensions.get('window').width > 400
+            ? Dimensions.get('window').height * 0.26
+            : Dimensions.get('window').height * 0.24,
+      },
+      android: {
+        left:
+          Dimensions.get('window').width > 410
+            ? Dimensions.get('window').height * 0.2
+            : Dimensions.get('window').height * 0.25,
+      },
+    }),
+
+    top: Dimensions.get('window').height * 0.55,
+    height: '30%',
+    width: Dimensions.get('window').width > 400 ? '35%' : '30%',
     zIndex: -1,
   },
   libraryCardImage: {
-    alignSelf: 'center',
-    height: '75%',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    transform: [{rotate: '90deg'}],
   },
   holderName: {
     textAlign: 'center',
