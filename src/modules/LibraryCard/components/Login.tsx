@@ -62,7 +62,7 @@ export const Login = ({saveDetails}: IProps) => {
   };
 
   const openLink = async () => {
-    const url = locales.libraryLink.fi;
+    const url = 'https://' + locales.libraryLink.fi;
     const isSupported = await Linking.canOpenURL(url);
     if (isSupported) await Linking.openURL(url);
   };
