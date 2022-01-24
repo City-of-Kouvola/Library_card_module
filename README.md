@@ -11,8 +11,10 @@ This package is used as a modular extension to https://github.com/City-of-Kouvol
 
 Library card module has been developed using:
 
-`"TypeScript”: “3.8.3"`
+`"TypeScript”: “4.5.5"`
 
-`"react": "17.0.1"`
+`"react": "17.0.2"`
 
-`"react-native": "0.64.0"`
+`"react-native": "0.67.1"`
+
+`"node": "16.0.0"`
