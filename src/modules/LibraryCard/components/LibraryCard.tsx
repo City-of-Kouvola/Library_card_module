@@ -31,15 +31,17 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
   return (
     <View style={styles.libraryCardContainer}>
       <View style={styles.rotatedContainer}>
-        <View style={styles.libraryCard} accessible={true} accessibilityLabel={'Kirjaston Viivakoodi'}>
+      <View style={styles.libraryCard}>
           <Text style={styles.holderName}>{holderName}</Text>
-          <Barcode
-            text={cardNumber}
-            width={2.2}
-            height={90}
-            value={cardNumber}
-            format={'CODE39'}
-          />
+          <View accessible={true} accessibilityLabel={'Kirjaston Viivakoodi'}>
+            <Barcode
+              text={cardNumber}
+              width={2.2}
+              height={90}
+              value={cardNumber}
+              format={'CODE39'}
+            />
+          </View>
         </View>
         <Text style={styles.libraryCardDescription}>
           {locales.libraryCardDescription.fi}
