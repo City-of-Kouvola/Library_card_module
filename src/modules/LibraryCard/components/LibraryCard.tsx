@@ -33,7 +33,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
       <View style={styles.rotatedContainer}>
       <View style={styles.libraryCard}>
           <Text style={styles.holderName}>{holderName}</Text>
-          <View accessible={true} accessibilityLabel={'Kirjaston Viivakoodi'}>
+          <View accessible={true} accessibilityLabel={'Kirjaston Viivakoodi'} accessibilityRole={'image'}>
             <Barcode
               text={cardNumber}
               width={2.2}
@@ -43,7 +43,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
             />
           </View>
         </View>
-        <Text style={styles.libraryCardDescription}>
+        <Text style={styles.libraryCardDescription} accessibilityRole={'text'}>
           {locales.libraryCardDescription.fi}
         </Text>
 
@@ -51,6 +51,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
           accessible
           accessibilityLabel={'Paina kirjautuaksesi ulos'}
           style={styles.logoutButton}
+          accessibilityRole={'button'}
           onPress={confirmLogout}
           activeOpacity={0.6}>
           <Text accessible style={styles.buttonText}>
@@ -61,6 +62,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
       <View style={styles.imageContainer}>
         <Image
           style={styles.libraryCardImage}
+          accessibilityRole={'image'}
           resizeMode={'contain'}
           source={require('../../../assets/img/villirilli.png')}
         />
