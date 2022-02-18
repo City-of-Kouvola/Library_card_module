@@ -96,7 +96,11 @@ export const Login = ({saveDetails}: IProps) => {
         {!isLoading ? (
           <View style={styles.loginForm}>
             <Text style={styles.loginTitle}>{locales.loginTitle.fi}</Text>
-            <Text style={styles.errorMessage}>{errorMessage}</Text>
+            <Text
+              style={styles.errorMessage}
+               accessibilityLabel={errorMessage}
+               accessibilityRole={'text'}
+               >{errorMessage}</Text>
             <TextInput
               accessible
               accessibilityLabel={'Syötä kortin numero'}
