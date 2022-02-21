@@ -34,8 +34,7 @@ export const Login = ({saveDetails}: IProps) => {
     try {
       if (!inputCardNumber || !password) {
         AccessibilityInfo.announceForAccessibility(locales.missingInputs.fi);
-        console.log(locales.missingInputs.fi);
-        setErrorMessage("PRII");
+        setErrorMessage(locales.missingInputs.fi);
         return;
       }
       setIsLoading(true);
@@ -118,7 +117,7 @@ export const Login = ({saveDetails}: IProps) => {
               accessible
               accessibilityLabel={'Syötä kortin numero'}
               maxLength={20}
-              style={styles.input}
+              style={errorMessage ? styles.errorInput : styles.input}
               onChangeText={inputCardNumber =>
                 setInputCardNumber(inputCardNumber)
               }
@@ -134,7 +133,7 @@ export const Login = ({saveDetails}: IProps) => {
               accessible
               accessibilityLabel={'Syötä salasana'}
               maxLength={50}
-              style={styles.input}
+              style={errorMessage ? styles.errorInput : styles.input}
               onChangeText={password => setPassword(password)}
               placeholder={locales.password.fi}
               placeholderTextColor="#8b9cb5"

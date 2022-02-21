@@ -75,6 +75,18 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: 'white',
   },
+  errorInput: {
+    width: 250,
+    fontSize: 24,
+    height: 58,
+    padding: 10,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: 'red',
+    color: 'black',
+    borderRadius: 5,
+    backgroundColor: 'white',
+  },
   loginButton: {
     width: 250,
     padding: 15,
