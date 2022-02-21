@@ -48,6 +48,8 @@ export const Login = ({saveDetails}: IProps) => {
 
       if (response.status !== 201) {
         setErrorMessage(locales.invalidCredentials.fi);
+        setInputCardNumber('');
+        setPassword('');
         setIsLoading(false);
         return;
       }
