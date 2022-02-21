@@ -33,7 +33,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
       <View style={styles.rotatedContainer}>
       <View style={styles.libraryCard}>
           <Text style={styles.holderName}>{holderName}</Text>
-          <View accessible={true} accessibilityLabel={'Kirjaston Viivakoodi'} accessibilityRole={'image'}>
+          <View accessible={true} accessibilityLabel={'Kirjastokortin Viivakoodi'} accessibilityRole={'image'}>
             <Barcode
               text={cardNumber}
               width={2.2}
