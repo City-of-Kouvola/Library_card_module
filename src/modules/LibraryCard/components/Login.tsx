@@ -28,9 +28,6 @@ export const Login = ({saveDetails}: IProps) => {
   const passwordInput = useRef<TextInput>(null);
 
   const authenticate = async () => {
-    AccessibilityInfo.announceForAccessibility("test");
-    console.log("Test");
-
     try {
       if (!inputCardNumber || !password) {
         AccessibilityInfo.announceForAccessibility(locales.missingInputs.fi);
