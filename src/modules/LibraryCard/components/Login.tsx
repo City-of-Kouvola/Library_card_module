@@ -109,7 +109,6 @@ export const Login = ({saveDetails}: IProps) => {
               style={styles.errorMessage}
                accessibilityLabel={errorMessage}
                accessibilityRole={'text'}
-               onChangeText={}
                >{errorMessage}</Text>
             <TextInput
               accessible
