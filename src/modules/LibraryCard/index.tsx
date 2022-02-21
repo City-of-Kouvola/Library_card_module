@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, AccessibilityInfo,} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LibraryCard, Login} from './components';
+import {locales} from '../../config/locales';
 
 export const LibraryCardModule = () => {
   const [cardNumber, setCardNumber] = useState<string>('');
@@ -44,6 +45,7 @@ export const LibraryCardModule = () => {
       await AsyncStorage.multiRemove(['@cardNumber', '@holderName']);
       setCardNumber('');
       setHolderName('');
+      AccessibilityInfo.announceForAccessibility(locales.userLoggedOut.fi);
     } catch (e) {
       console.log('Error removing data: ', e);
     }

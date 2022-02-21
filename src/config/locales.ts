@@ -35,6 +35,12 @@ export const locales = {
   confirmLogout: {
     fi: 'Haluatko varmasti kirjautua ulos?',
   },
+  userLoggedIn: {
+    fi: 'Kirjauduit sisään onnistuneesti',
+  },
+  userLoggedOut: {
+    fi: 'Kirjauduit ulos onnistuneesti',
+  },
   cancel: {
     fi: 'Peruuta',
   },
