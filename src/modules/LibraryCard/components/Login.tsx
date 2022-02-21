@@ -10,6 +10,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  AccessibilityInfo,
 } from 'react-native';
 import {styles} from './styles';
 import {locales} from '../../../config/locales';
@@ -27,9 +28,14 @@ export const Login = ({saveDetails}: IProps) => {
   const passwordInput = useRef<TextInput>(null);
 
   const authenticate = async () => {
+    AccessibilityInfo.announceForAccessibility("test");
+    console.log("Test");
+
     try {
       if (!inputCardNumber || !password) {
-        setErrorMessage(locales.missingInputs.fi);
+        AccessibilityInfo.announceForAccessibility(locales.missingInputs.fi);
+        console.log(locales.missingInputs.fi);
+        setErrorMessage("PRII");
         return;
       }
       setIsLoading(true);
@@ -47,6 +53,7 @@ export const Login = ({saveDetails}: IProps) => {
       );
 
       if (response.status !== 201) {
+        AccessibilityInfo.announceForAccessibility(locales.invalidCredentials.fi);
         setErrorMessage(locales.invalidCredentials.fi);
         setInputCardNumber('');
         setPassword('');
@@ -101,7 +108,12 @@ export const Login = ({saveDetails}: IProps) => {
         {!isLoading ? (
           <View style={styles.loginForm}>
             <Text style={styles.loginTitle} accessibilityRole={'text'}>{locales.loginTitle.fi}</Text>
-            <Text style={styles.errorMessage}>{errorMessage}</Text>
+            <Text
+              style={styles.errorMessage}
+               accessibilityLabel={errorMessage}
+               accessibilityRole={'text'}
+               onChangeText={}
+               >{errorMessage}</Text>
             <TextInput
               accessible
               accessibilityLabel={'Syötä kortin numero'}
