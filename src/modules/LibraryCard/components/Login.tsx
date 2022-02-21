@@ -79,7 +79,7 @@ export const Login = ({saveDetails}: IProps) => {
         <View style={styles.headerContainer}>
           <Image
             resizeMode="contain"
-            accessibilityLabel={'Kirjaston logo'}
+            accessibilityLabel={locales.libraryLogo}
             accessibilityRole={'image'}
             style={styles.loginHeaderImage}
             source={require('../../../assets/img/yleisten-kirjastojen-tunnus-fi.png')}
@@ -90,7 +90,7 @@ export const Login = ({saveDetails}: IProps) => {
         </Text>
         <Text
           accessible
-          accessibilityLabel={`Avaa linkki sivulle ${locales.libraryLink.fi}`}
+          accessibilityLabel={`${locales.openLinkTo} ${locales.libraryLink.fi}`}
           accessibilityRole={'text'}
           style={styles.loginLibraryLink}
           onPress={openLink}>
@@ -102,7 +102,7 @@ export const Login = ({saveDetails}: IProps) => {
             <Text style={styles.errorMessage}>{errorMessage}</Text>
             <TextInput
               accessible
-              accessibilityLabel={'Syötä kortin numero'}
+              accessibilityLabel={locales.insertCardNumber}
               maxLength={20}
               style={styles.input}
               onChangeText={inputCardNumber =>
@@ -118,7 +118,7 @@ export const Login = ({saveDetails}: IProps) => {
             />
             <TextInput
               accessible
-              accessibilityLabel={'Syötä salasana'}
+              accessibilityLabel={locales.givePassword}
               maxLength={50}
               style={styles.input}
               onChangeText={password => setPassword(password)}
@@ -131,7 +131,7 @@ export const Login = ({saveDetails}: IProps) => {
             />
             <TouchableOpacity
               accessible
-              accessibilityLabel={'Paina kirjautuaksesi sisään'}
+              accessibilityLabel={locales.pressToLogin}
               style={styles.loginButton}
               accessibilityRole={'button'}
               onPress={authenticate}
@@ -142,7 +142,7 @@ export const Login = ({saveDetails}: IProps) => {
             </TouchableOpacity>
           </View>
         ) : (
-          <ActivityIndicator size="large" color="#000" accessibilityLabel={'Odotetaan vastausta palvelimelta'}/>
+          <ActivityIndicator size="large" color="#000" accessibilityLabel={locales.waitingResponse}/>
         )}
       </KeyboardAvoidingView>
     </ScrollView>
