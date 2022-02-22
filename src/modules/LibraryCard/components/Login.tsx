@@ -57,6 +57,7 @@ export const Login = ({saveDetails}: IProps) => {
       const responseJSON = await response.json();
       const holderName = `${responseJSON.firstname} ${responseJSON.surname}`;
       saveDetails(inputCardNumber, holderName);
+      AccessibilityInfo.announceForAccessibility(locales.userLoggedIn.fi);
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
