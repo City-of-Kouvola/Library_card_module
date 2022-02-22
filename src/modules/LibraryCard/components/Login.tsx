@@ -10,6 +10,7 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  AccessibilityInfo,
 } from 'react-native';
 import {styles} from './styles';
 import {locales} from '../../../config/locales';
@@ -29,6 +30,7 @@ export const Login = ({saveDetails}: IProps) => {
   const authenticate = async () => {
     try {
       if (!inputCardNumber || !password) {
+        AccessibilityInfo.announceForAccessibility(locales.missingInputs.fi);
         setErrorMessage(locales.missingInputs.fi);
         return;
       }
@@ -47,8 +49,9 @@ export const Login = ({saveDetails}: IProps) => {
       );
 
       if (response.status !== 201) {
-        setErrorMessage(locales.invalidCredentials.fi);
         setIsLoading(false);
+        AccessibilityInfo.announceForAccessibility(locales.invalidCredentials.fi);
+        setErrorMessage(locales.invalidCredentials.fi);
         return;
       }
       const responseJSON = await response.json();
@@ -96,12 +99,16 @@ export const Login = ({saveDetails}: IProps) => {
         {!isLoading ? (
           <View style={styles.loginForm}>
             <Text style={styles.loginTitle}>{locales.loginTitle.fi}</Text>
-            <Text style={styles.errorMessage}>{errorMessage}</Text>
+            <Text
+              style={styles.errorMessage}
+               accessibilityLabel={errorMessage}
+               accessibilityRole={'text'}
+               >{errorMessage}</Text>
             <TextInput
               accessible
               accessibilityLabel={'Syötä kortin numero'}
               maxLength={20}
-              style={styles.input}
+              style={errorMessage ? styles.errorInput : styles.input}
               onChangeText={inputCardNumber =>
                 setInputCardNumber(inputCardNumber)
               }
@@ -117,7 +124,7 @@ export const Login = ({saveDetails}: IProps) => {
               accessible
               accessibilityLabel={'Syötä salasana'}
               maxLength={50}
-              style={styles.input}
+              style={errorMessage ? styles.errorInput : styles.input}
               onChangeText={password => setPassword(password)}
               placeholder={locales.password.fi}
               placeholderTextColor="#8b9cb5"
