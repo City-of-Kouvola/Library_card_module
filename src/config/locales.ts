@@ -54,6 +54,11 @@ export const locales = {
   },
   openLinkTo: {
     fi: 'Avaa linkki sivulle',
+  userLoggedIn: {
+    fi: 'Kirjauduit sisään onnistuneesti',
+  },
+  userLoggedOut: {
+    fi: 'Kirjauduit ulos onnistuneesti',
   },
   cancel: {
     fi: 'Peruuta',
