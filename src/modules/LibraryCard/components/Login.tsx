@@ -52,6 +52,8 @@ export const Login = ({saveDetails}: IProps) => {
         setIsLoading(false);
         AccessibilityInfo.announceForAccessibility(locales.invalidCredentials.fi);
         setErrorMessage(locales.invalidCredentials.fi);
+        setInputCardNumber('');
+        setPassword('');
         return;
       }
       const responseJSON = await response.json();
