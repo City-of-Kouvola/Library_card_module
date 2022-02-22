@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
     opacity: 0.5,
   },
   errorMessage: {
-    color: 'red',
+    color: '#EB0000',
     backgroundColor: 'white',
     fontSize: 16,
     padding: 12,

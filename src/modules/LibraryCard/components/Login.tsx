@@ -83,23 +83,26 @@ export const Login = ({saveDetails}: IProps) => {
         <View style={styles.headerContainer}>
           <Image
             resizeMode="contain"
+            accessibilityLabel={locales.libraryLogo}
+            accessibilityRole={'image'}
             style={styles.loginHeaderImage}
             source={require('../../../assets/img/yleisten-kirjastojen-tunnus-fi.png')}
           />
         </View>
-        <Text style={styles.loginDescription}>
+        <Text style={styles.loginDescription} accessibilityRole={'text'}>
           {locales.loginDescription.fi}
         </Text>
         <Text
           accessible
-          accessibilityLabel={`Avaa linkki sivulle ${locales.libraryLink.fi}`}
+          accessibilityLabel={`${locales.openLinkTo} ${locales.libraryLink.fi}`}
+          accessibilityRole={'text'}
           style={styles.loginLibraryLink}
           onPress={openLink}>
           {locales.libraryLink.fi}
         </Text>
         {!isLoading ? (
           <View style={styles.loginForm}>
-            <Text style={styles.loginTitle}>{locales.loginTitle.fi}</Text>
+            <Text style={styles.loginTitle} accessibilityRole={'text'}>{locales.loginTitle.fi}</Text>
             <Text
               style={styles.errorMessage}
                accessibilityLabel={errorMessage}
@@ -107,7 +110,7 @@ export const Login = ({saveDetails}: IProps) => {
                >{errorMessage}</Text>
             <TextInput
               accessible
-              accessibilityLabel={'Syötä kortin numero'}
+              accessibilityLabel={locales.insertCardNumber}
               maxLength={20}
               style={errorMessage ? styles.errorInput : styles.input}
               onChangeText={inputCardNumber =>
@@ -123,7 +126,7 @@ export const Login = ({saveDetails}: IProps) => {
             />
             <TextInput
               accessible
-              accessibilityLabel={'Syötä salasana'}
+              accessibilityLabel={locales.givePassword}
               maxLength={50}
               style={errorMessage ? styles.errorInput : styles.input}
               onChangeText={password => setPassword(password)}
@@ -136,8 +139,9 @@ export const Login = ({saveDetails}: IProps) => {
             />
             <TouchableOpacity
               accessible
-              accessibilityLabel={'Paina kirjautuaksesi sisään'}
+              accessibilityLabel={locales.pressToLogin}
               style={styles.loginButton}
+              accessibilityRole={'button'}
               onPress={authenticate}
               activeOpacity={0.6}>
               <Text accessible style={styles.buttonText}>
@@ -146,7 +150,7 @@ export const Login = ({saveDetails}: IProps) => {
             </TouchableOpacity>
           </View>
         ) : (
-          <ActivityIndicator size="large" color="#000" />
+          <ActivityIndicator size="large" color="#000" accessibilityLabel={locales.waitingResponse}/>
         )}
       </KeyboardAvoidingView>
     </ScrollView>
