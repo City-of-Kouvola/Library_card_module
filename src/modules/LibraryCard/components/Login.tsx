@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import {styles} from './styles';
 import {locales} from '../../../config/locales';
+import { InputField } from './InputField';
 
 interface IProps {
   saveDetails: (authCardNumber: string, authHolderName: string) => void;
@@ -25,7 +26,7 @@ export const Login = ({saveDetails}: IProps) => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const passwordInput = useRef<TextInput>(null);
+  const passwordInputRef = useRef<TextInput>(null);
 
   const authenticate = async () => {
     try {
@@ -85,7 +86,7 @@ export const Login = ({saveDetails}: IProps) => {
         <View style={styles.headerContainer}>
           <Image
             resizeMode="contain"
-            accessibilityLabel={locales.libraryLogo}
+            accessibilityLabel={locales.libraryLogo.fi}
             accessibilityRole={'image'}
             style={styles.loginHeaderImage}
             source={require('../../../assets/img/yleisten-kirjastojen-tunnus-fi.png')}
@@ -96,7 +97,7 @@ export const Login = ({saveDetails}: IProps) => {
         </Text>
         <Text
           accessible
-          accessibilityLabel={`${locales.openLinkTo} ${locales.libraryLink.fi}`}
+          accessibilityLabel={`${locales.openLinkTo.fi} ${locales.libraryLink.fi}`}
           accessibilityRole={'text'}
           style={styles.loginLibraryLink}
           onPress={openLink}>
@@ -110,38 +111,40 @@ export const Login = ({saveDetails}: IProps) => {
                accessibilityLabel={errorMessage}
                accessibilityRole={'text'}
                >{errorMessage}</Text>
-            <TextInput
-              accessible
-              accessibilityLabel={locales.insertCardNumber}
-              maxLength={20}
-              style={errorMessage ? styles.errorInput : styles.input}
-              onChangeText={inputCardNumber =>
-                setInputCardNumber(inputCardNumber)
-              }
-              placeholder={locales.cardNumber.fi}
-              placeholderTextColor="#8b9cb5"
-              returnKeyType="next"
-              blurOnSubmit={false}
-              onSubmitEditing={() => {
-                passwordInput.current?.focus();
-              }}
+            <InputField
+            input={{
+              accessible:true,
+              accessibilityLabel:'Syötä kortin numero',
+              maxLength:20,
+              style:errorMessage ? styles.errorInput : styles.input,
+              onChangeText:(inputCardNumber: string) =>
+                setInputCardNumber(inputCardNumber),
+              placeholder:locales.cardNumber.fi,
+              placeholderTextColor:"#8b9cb5",
+              returnKeyType:"next",
+              blurOnSubmit:false,
+              onSubmitEditing:() => {
+                passwordInputRef.current?.focus();
+              }}}
             />
-            <TextInput
-              accessible
-              accessibilityLabel={locales.givePassword}
-              maxLength={50}
-              style={errorMessage ? styles.errorInput : styles.input}
-              onChangeText={password => setPassword(password)}
-              placeholder={locales.password.fi}
-              placeholderTextColor="#8b9cb5"
-              secureTextEntry
-              autoCapitalize="none"
-              ref={passwordInput}
-              onSubmitEditing={authenticate}
+            <InputField
+            input={{
+              accessible:true,
+              accessibilityLabel:'Syötä salasana',
+              maxLength:50,
+              style:errorMessage ? styles.errorInput : styles.input,
+              onChangeText:(password: string) => setPassword(password),
+              placeholder:locales.password.fi,
+              placeholderTextColor:"#8b9cb5",
+              secureTextEntry: true,
+              autoCapitalize:"none",
+              onSubmitEditing:authenticate
+            }}
+            ref={passwordInputRef}
             />
             <TouchableOpacity
               accessible
-              accessibilityLabel={locales.pressToLogin}
+              accessibilityLabel={locales.pressToLogin.fi}
               style={styles.loginButton}
               accessibilityRole={'button'}
               onPress={authenticate}
@@ -152,7 +155,7 @@ export const Login = ({saveDetails}: IProps) => {
             </TouchableOpacity>
           </View>
         ) : (
-          <ActivityIndicator size="large" color="#000" accessibilityLabel={locales.waitingResponse}/>
+          <ActivityIndicator size="large" color="#000" accessibilityLabel={locales.waitingResponse.fi}/>
         )}
       </KeyboardAvoidingView>
     </ScrollView>
