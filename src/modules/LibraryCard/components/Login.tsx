@@ -10,9 +10,11 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
+  AccessibilityInfo,
 } from 'react-native';
 import {styles} from './styles';
 import {locales} from '../../../config/locales';
+import { InputField } from './InputField';
 
 interface IProps {
   saveDetails: (authCardNumber: string, authHolderName: string) => void;
@@ -24,11 +26,12 @@ export const Login = ({saveDetails}: IProps) => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const passwordInput = useRef<TextInput>(null);
+  const passwordInputRef = useRef<TextInput>(null);
 
   const authenticate = async () => {
     try {
       if (!inputCardNumber || !password) {
+        AccessibilityInfo.announceForAccessibility(locales.missingInputs.fi);
         setErrorMessage(locales.missingInputs.fi);
         return;
       }
@@ -47,13 +50,17 @@ export const Login = ({saveDetails}: IProps) => {
       );
 
       if (response.status !== 201) {
-        setErrorMessage(locales.invalidCredentials.fi);
         setIsLoading(false);
+        AccessibilityInfo.announceForAccessibility(locales.invalidCredentials.fi);
+        setErrorMessage(locales.invalidCredentials.fi);
+        setInputCardNumber('');
+        setPassword('');
         return;
       }
       const responseJSON = await response.json();
       const holderName = `${responseJSON.firstname} ${responseJSON.surname}`;
       saveDetails(inputCardNumber, holderName);
+      AccessibilityInfo.announceForAccessibility(locales.userLoggedIn.fi);
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
@@ -79,57 +86,67 @@ export const Login = ({saveDetails}: IProps) => {
         <View style={styles.headerContainer}>
           <Image
             resizeMode="contain"
+            accessibilityLabel={locales.libraryLogo.fi}
+            accessibilityRole={'image'}
             style={styles.loginHeaderImage}
             source={require('../../../assets/img/yleisten-kirjastojen-tunnus-fi.png')}
           />
         </View>
-        <Text style={styles.loginDescription}>
+        <Text style={styles.loginDescription} accessibilityRole={'text'}>
           {locales.loginDescription.fi}
         </Text>
         <Text
           accessible
-          accessibilityLabel={`Avaa linkki sivulle ${locales.libraryLink.fi}`}
+          accessibilityLabel={`${locales.openLinkTo.fi} ${locales.libraryLink.fi}`}
+          accessibilityRole={'text'}
           style={styles.loginLibraryLink}
           onPress={openLink}>
           {locales.libraryLink.fi}
         </Text>
         {!isLoading ? (
           <View style={styles.loginForm}>
-            <Text style={styles.loginTitle}>{locales.loginTitle.fi}</Text>
-            <Text style={styles.errorMessage}>{errorMessage}</Text>
-            <TextInput
-              accessible
-              accessibilityLabel={'Syötä kortin numero'}
-              maxLength={20}
-              style={styles.input}
-              onChangeText={inputCardNumber =>
-                setInputCardNumber(inputCardNumber)
-              }
-              placeholder={locales.cardNumber.fi}
-              placeholderTextColor="#8b9cb5"
-              returnKeyType="next"
-              blurOnSubmit={false}
-              onSubmitEditing={() => {
-                passwordInput.current?.focus();
-              }}
+            <Text style={styles.loginTitle} accessibilityRole={'text'}>{locales.loginTitle.fi}</Text>
+            <Text
+              style={styles.errorMessage}
+               accessibilityLabel={errorMessage}
+               accessibilityRole={'text'}
+               >{errorMessage}</Text>
+            <InputField
+            input={{
+              accessible:true,
+              accessibilityLabel:'Syötä kortin numero',
+              maxLength:20,
+              style:errorMessage ? styles.errorInput : styles.input,
+              onChangeText:(inputCardNumber: string) =>
+                setInputCardNumber(inputCardNumber),
+              placeholder:locales.cardNumber.fi,
+              placeholderTextColor:"#8b9cb5",
+              returnKeyType:"next",
+              blurOnSubmit:false,
+              onSubmitEditing:() => {
+                passwordInputRef.current?.focus();
+              }}}
             />
-            <TextInput
-              accessible
-              accessibilityLabel={'Syötä salasana'}
-              maxLength={50}
-              style={styles.input}
-              onChangeText={password => setPassword(password)}
-              placeholder={locales.password.fi}
-              placeholderTextColor="#8b9cb5"
-              secureTextEntry
-              autoCapitalize="none"
-              ref={passwordInput}
-              onSubmitEditing={authenticate}
+            <InputField
+            input={{
+              accessible:true,
+              accessibilityLabel:'Syötä salasana',
+              maxLength:50,
+              style:errorMessage ? styles.errorInput : styles.input,
+              onChangeText:(password: string) => setPassword(password),
+              placeholder:locales.password.fi,
+              placeholderTextColor:"#8b9cb5",
+              secureTextEntry: true,
+              autoCapitalize:"none",
+              onSubmitEditing:authenticate
+            }}
+            ref={passwordInputRef}
             />
             <TouchableOpacity
               accessible
-              accessibilityLabel={'Paina kirjautuaksesi sisään'}
+              accessibilityLabel={locales.pressToLogin.fi}
               style={styles.loginButton}
+              accessibilityRole={'button'}
               onPress={authenticate}
               activeOpacity={0.6}>
               <Text accessible style={styles.buttonText}>
@@ -138,7 +155,7 @@ export const Login = ({saveDetails}: IProps) => {
             </TouchableOpacity>
           </View>
         ) : (
-          <ActivityIndicator size="large" color="#000" />
+          <ActivityIndicator size="large" color="#000" accessibilityLabel={locales.waitingResponse.fi}/>
         )}
       </KeyboardAvoidingView>
     </ScrollView>
