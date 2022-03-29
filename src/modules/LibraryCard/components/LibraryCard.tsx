@@ -33,7 +33,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
       <View style={styles.rotatedContainer}>
       <View style={styles.libraryCard}>
           <Text style={styles.holderName}>{holderName}</Text>
-          <View accessible={true} accessibilityLabel={locales.libraryBarCode} accessibilityRole={'image'}>
+          <View accessible={true} accessibilityLabel={locales.libraryBarCode.fi} accessibilityRole={'image'}>
             <Barcode
               text={cardNumber}
               width={2.2}
@@ -49,7 +49,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
 
         <TouchableOpacity
           accessible
-          accessibilityLabel={locales.pressLogout}
+          accessibilityLabel={locales.pressLogout.fi}
           style={styles.logoutButton}
           accessibilityRole={'button'}
           onPress={confirmLogout}
