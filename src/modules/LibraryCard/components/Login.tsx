@@ -26,7 +26,7 @@ export const Login = ({saveDetails}: IProps) => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const passwordInputRef = useRef<TextInput>();
+  const passwordInputRef = useRef<TextInput>(null);
 
   const authenticate = async () => {
     try {
@@ -86,7 +86,7 @@ export const Login = ({saveDetails}: IProps) => {
         <View style={styles.headerContainer}>
           <Image
             resizeMode="contain"
-            accessibilityLabel={locales.libraryLogo}
+            accessibilityLabel={locales.libraryLogo.fi}
             accessibilityRole={'image'}
             style={styles.loginHeaderImage}
             source={require('../../../assets/img/yleisten-kirjastojen-tunnus-fi.png')}
@@ -97,7 +97,7 @@ export const Login = ({saveDetails}: IProps) => {
         </Text>
         <Text
           accessible
-          accessibilityLabel={`${locales.openLinkTo} ${locales.libraryLink.fi}`}
+          accessibilityLabel={`${locales.openLinkTo.fi} ${locales.libraryLink.fi}`}
           accessibilityRole={'text'}
           style={styles.loginLibraryLink}
           onPress={openLink}>
@@ -144,7 +144,7 @@ export const Login = ({saveDetails}: IProps) => {
             />
             <TouchableOpacity
               accessible
-              accessibilityLabel={locales.pressToLogin}
+              accessibilityLabel={locales.pressToLogin.fi}
               style={styles.loginButton}
               accessibilityRole={'button'}
               onPress={authenticate}
@@ -155,7 +155,7 @@ export const Login = ({saveDetails}: IProps) => {
             </TouchableOpacity>
           </View>
         ) : (
-          <ActivityIndicator size="large" color="#000" accessibilityLabel={locales.waitingResponse}/>
+          <ActivityIndicator size="large" color="#000" accessibilityLabel={locales.waitingResponse.fi}/>
         )}
       </KeyboardAvoidingView>
     </ScrollView>
