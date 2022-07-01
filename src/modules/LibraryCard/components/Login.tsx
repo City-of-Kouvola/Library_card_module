@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import {styles} from './styles';
 import {locales} from '../../../config/locales';
-import { InputField } from './InputField';
+import {InputField} from './InputField';
 
 interface IProps {
   saveDetails: (authCardNumber: string, authHolderName: string) => void;
@@ -38,20 +38,22 @@ export const Login = ({saveDetails}: IProps) => {
       setIsLoading(true);
 
       const response = await fetch(
-        'https://kyyti.koha-suomi.fi/api/v1/auth/session',
+        'https://kyyti.koha-suomi.fi/api/v1/borrowers/status',
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             Accept: 'application/json',
           },
-          body: `cardnumber=${inputCardNumber}&password=${password}`,
+          body: `uname=${inputCardNumber}&passwd=${password}`,
         },
       );
 
-      if (response.status !== 201) {
+      if (response.status !== 200) {
         setIsLoading(false);
-        AccessibilityInfo.announceForAccessibility(locales.invalidCredentials.fi);
+        AccessibilityInfo.announceForAccessibility(
+          locales.invalidCredentials.fi,
+        );
         setErrorMessage(locales.invalidCredentials.fi);
         setInputCardNumber('');
         setPassword('');
@@ -105,42 +107,46 @@ export const Login = ({saveDetails}: IProps) => {
         </Text>
         {!isLoading ? (
           <View style={styles.loginForm}>
-            <Text style={styles.loginTitle} accessibilityRole={'text'}>{locales.loginTitle.fi}</Text>
+            <Text style={styles.loginTitle} accessibilityRole={'text'}>
+              {locales.loginTitle.fi}
+            </Text>
             <Text
               style={styles.errorMessage}
-               accessibilityLabel={errorMessage}
-               accessibilityRole={'text'}
-               >{errorMessage}</Text>
+              accessibilityLabel={errorMessage}
+              accessibilityRole={'text'}>
+              {errorMessage}
+            </Text>
             <InputField
-            input={{
-              accessible:true,
-              accessibilityLabel:'Syötä kortin numero',
-              maxLength:20,
-              style:errorMessage ? styles.errorInput : styles.input,
-              onChangeText:(inputCardNumber: string) =>
-                setInputCardNumber(inputCardNumber),
-              placeholder:locales.cardNumber.fi,
-              placeholderTextColor:"#8b9cb5",
-              returnKeyType:"next",
-              blurOnSubmit:false,
-              onSubmitEditing:() => {
-                passwordInputRef.current?.focus();
-              }}}
+              input={{
+                accessible: true,
+                accessibilityLabel: 'Syötä kortin numero',
+                maxLength: 20,
+                style: errorMessage ? styles.errorInput : styles.input,
+                onChangeText: (inputCardNumber: string) =>
+                  setInputCardNumber(inputCardNumber),
+                placeholder: locales.cardNumber.fi,
+                placeholderTextColor: '#8b9cb5',
+                returnKeyType: 'next',
+                blurOnSubmit: false,
+                onSubmitEditing: () => {
+                  passwordInputRef.current?.focus();
+                },
+              }}
             />
             <InputField
-            input={{
-              accessible:true,
-              accessibilityLabel:'Syötä salasana',
-              maxLength:50,
-              style:errorMessage ? styles.errorInput : styles.input,
-              onChangeText:(password: string) => setPassword(password),
-              placeholder:locales.password.fi,
-              placeholderTextColor:"#8b9cb5",
-              secureTextEntry: true,
-              autoCapitalize:"none",
-              onSubmitEditing:authenticate
-            }}
-            ref={passwordInputRef}
+              input={{
+                accessible: true,
+                accessibilityLabel: 'Syötä salasana',
+                maxLength: 50,
+                style: errorMessage ? styles.errorInput : styles.input,
+                onChangeText: (password: string) => setPassword(password),
+                placeholder: locales.password.fi,
+                placeholderTextColor: '#8b9cb5',
+                secureTextEntry: true,
+                autoCapitalize: 'none',
+                onSubmitEditing: authenticate,
+              }}
+              ref={passwordInputRef}
             />
             <TouchableOpacity
               accessible
@@ -155,7 +161,11 @@ export const Login = ({saveDetails}: IProps) => {
             </TouchableOpacity>
           </View>
         ) : (
-          <ActivityIndicator size="large" color="#000" accessibilityLabel={locales.waitingResponse.fi}/>
+          <ActivityIndicator
+            size="large"
+            color="#000"
+            accessibilityLabel={locales.waitingResponse.fi}
+          />
         )}
       </KeyboardAvoidingView>
     </ScrollView>
