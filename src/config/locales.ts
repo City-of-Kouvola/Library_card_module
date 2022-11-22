@@ -7,6 +7,9 @@ export const locales = {
   loginDescription: {
     fi: 'Kouvolan kaupunginkirjaston sähköinen kirjastokortti. Käytä lainaamiseen automaatilla, palvelutiskillä ja omatoimikirjastojen sisäänpääsyyn.​',
   },
+  loginAccessibility: {
+    fi: 'Kirjaudu sisään teksti'
+  },
   libraryCardDescription: {
     fi: 'Sitoudun noudattamaan kirjaston käyttösääntöjä.',
   },
@@ -48,6 +51,12 @@ export const locales = {
   },
   missingInputs: {
     fi: 'Täytä tyhjät kentät',
+  },
+  missingCardNumber: {
+    fi: "kortin numero puuttuu"
+  },
+  missingPassword: {
+    fi: "kortin salasana puuttuu"
   },
   confirmLogout: {
     fi: 'Haluatko varmasti kirjautua ulos?',
