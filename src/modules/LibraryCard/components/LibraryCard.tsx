@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   Alert,
   Image,
   Dimensions,
+  AccessibilityInfo
 } from 'react-native';
 import Barcode from 'react-native-barcode-builder';
 import {locales} from '../../../config/locales';
@@ -18,6 +19,16 @@ interface IProps {
 }
 
 export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
+
+  const [isTimeout, setIsTimeout] = useState(true)
+
+  useEffect(() => {
+    AccessibilityInfo.announceForAccessibility(locales.userLoggedIn.fi);
+    setTimeout(() => {
+      setIsTimeout(false)
+    }, 5000);
+  }, [])  
+
   const confirmLogout = () => {
     Alert.alert(locales.confirmLogout.fi, '', [
       {
@@ -29,10 +40,12 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
   };
 
   return (
-    <View style={styles.libraryCardContainer}>
+    <View 
+      style={styles.libraryCardContainer}
+      importantForAccessibility={isTimeout ? "no-hide-descendants" : "yes"}>    
       <View style={styles.rotatedContainer}>
-      <View style={styles.libraryCard}>
-          <Text style={styles.holderName}>{holderName}</Text>
+        <View style={styles.libraryCard}>
+          <Text accessible={true} style={styles.holderName}>{holderName}</Text>
           <View accessible={true} accessibilityLabel={locales.libraryBarCode.fi} accessibilityRole={'image'}>
             <Barcode
               text={cardNumber}
@@ -43,10 +56,9 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
             />
           </View>
         </View>
-        <Text style={styles.libraryCardDescription} accessibilityRole={'text'}>
+        <Text style={styles.libraryCardDescription} accessible accessibilityRole={'text'}>
           {locales.libraryCardDescription.fi}
         </Text>
-
         <TouchableOpacity
           accessible
           accessibilityLabel={locales.pressLogout.fi}
@@ -54,7 +66,7 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
           accessibilityRole={'button'}
           onPress={confirmLogout}
           activeOpacity={0.6}>
-          <Text accessible style={styles.buttonText}>
+          <Text accessible={false} style={styles.buttonText}>
             {locales.logoutButton.fi}
           </Text>
         </TouchableOpacity>
