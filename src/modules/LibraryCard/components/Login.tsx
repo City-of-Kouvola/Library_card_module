@@ -31,7 +31,8 @@ export const Login = ({saveDetails}: IProps) => {
   const authenticate = async () => {
     try {
       if (!inputCardNumber || !password) {
-        AccessibilityInfo.announceForAccessibility(locales.missingInputs.fi);
+        if (!inputCardNumber) AccessibilityInfo.announceForAccessibility(locales.missingCardNumber.fi);
+        if (!password) AccessibilityInfo.announceForAccessibility(locales.missingPassword.fi);
         setErrorMessage(locales.missingInputs.fi);
         return;
       }
@@ -61,8 +62,7 @@ export const Login = ({saveDetails}: IProps) => {
       }
       const responseJSON = await response.json();
       const holderName = `${responseJSON.firstname} ${responseJSON.surname}`;
-      saveDetails(inputCardNumber, holderName);
-      AccessibilityInfo.announceForAccessibility(locales.userLoggedIn.fi);
+      saveDetails(inputCardNumber, holderName);      
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
@@ -107,7 +107,7 @@ export const Login = ({saveDetails}: IProps) => {
         </Text>
         {!isLoading ? (
           <View style={styles.loginForm}>
-            <Text style={styles.loginTitle} accessibilityRole={'text'}>
+            <Text style={styles.loginTitle} accessibilityLabel={locales.loginAccessibility.fi}>
               {locales.loginTitle.fi}
             </Text>
             <Text
@@ -155,7 +155,7 @@ export const Login = ({saveDetails}: IProps) => {
               accessibilityRole={'button'}
               onPress={authenticate}
               activeOpacity={0.6}>
-              <Text accessible style={styles.buttonText}>
+              <Text accessible={false} style={styles.buttonText}>
                 {locales.loginButton.fi}
               </Text>
             </TouchableOpacity>
