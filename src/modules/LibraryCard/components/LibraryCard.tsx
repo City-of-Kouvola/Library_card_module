@@ -11,14 +11,16 @@ import {
 import Barcode from 'react-native-barcode-builder';
 import {locales} from '../../../config/locales';
 import {styles} from './styles';
+import { getBrightnessLevel, setBrightnessLevel } from "@adrianso/react-native-device-brightness";
 
 interface IProps {
   cardNumber: string;
   holderName?: string;
   logout: () => void;
+  isFocused?: boolean;
 }
 
-export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
+export const LibraryCard = ({cardNumber, holderName, logout, isFocused}: IProps) => {
 
   const [isTimeout, setIsTimeout] = useState(true)
 
@@ -28,6 +30,26 @@ export const LibraryCard = ({cardNumber, holderName, logout}: IProps) => {
       setIsTimeout(false)
     }, 5000);
   }, [])  
+
+  useEffect(() => {
+
+    if (!isFocused) {
+      return;
+    }
+
+    getBrightnessLevel().then(brightness => {
+
+      /* 
+        Android devices have two types of brightnesses: "system brightness" and "window brightness". Only the app brightness can be changed from the DeviceBrightness package.
+        System brightness can override the app brightness, we have to set app brightness to a different value every time in order for it to work.
+      */
+
+      const newBrightness = (brightness !== 1) ? 1 : 0.99;
+      setBrightnessLevel(newBrightness);
+
+    });
+
+  }, [isFocused]);
 
   const confirmLogout = () => {
     Alert.alert(locales.confirmLogout.fi, '', [

@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LibraryCard, Login} from './components';
 import {locales} from '../../config/locales';
 
-export const LibraryCardModule = () => {
+export const LibraryCardModule = ({isFocused}: {isFocused?: boolean}) => {
   const [cardNumber, setCardNumber] = useState<string>('');
   const [holderName, setHolderName] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -57,7 +57,7 @@ export const LibraryCardModule = () => {
 
   if (cardNumber) {
     return (
-      <LibraryCard logout={() => logout()} {...{cardNumber, holderName}} />
+      <LibraryCard logout={() => logout()} {...{cardNumber, holderName, isFocused}} />
     );
   }
   if (isLoading) return <></>;
