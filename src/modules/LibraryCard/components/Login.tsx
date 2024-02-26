@@ -15,6 +15,7 @@ import {
 import {styles} from './styles';
 import {locales} from '../../../config/locales';
 import {InputField} from './InputField';
+import DeviceBrightness from "@adrianso/react-native-device-brightness";
 
 interface IProps {
   saveDetails: (authCardNumber: string, authHolderName: string) => void;
@@ -62,7 +63,9 @@ export const Login = ({saveDetails}: IProps) => {
       }
       const responseJSON = await response.json();
       const holderName = `${responseJSON.firstname} ${responseJSON.surname}`;
-      saveDetails(inputCardNumber, holderName);      
+      saveDetails(inputCardNumber, holderName);    
+      // set screen to max brightness when opening the library card module screen
+      DeviceBrightness.setBrightnessLevel(1);  
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);

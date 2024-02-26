@@ -3,7 +3,6 @@ import {View, Text, AccessibilityInfo,} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LibraryCard, Login} from './components';
 import {locales} from '../../config/locales';
-import DeviceBrightness from "@adrianso/react-native-device-brightness";
 
 export const LibraryCardModule = () => {
   const [cardNumber, setCardNumber] = useState<string>('');
@@ -53,9 +52,6 @@ export const LibraryCardModule = () => {
   };
 
   useEffect(() => {
-
-    // set screen to max brightness when opening the library card module screen
-    DeviceBrightness.setBrightnessLevel(1);
 
     getDetails();
 
