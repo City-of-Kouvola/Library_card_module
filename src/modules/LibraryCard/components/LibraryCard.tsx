@@ -5,8 +5,8 @@ import {
   TouchableOpacity,
   Alert,
   Image,
-  Dimensions,
-  AccessibilityInfo
+  AccessibilityInfo,
+  Platform
 } from 'react-native';
 import Barcode from 'react-native-barcode-builder';
 import {locales} from '../../../config/locales';
@@ -37,19 +37,35 @@ export const LibraryCard = ({cardNumber, holderName, logout, isFocused}: IProps)
       return;
     }
 
-    getBrightnessLevel().then(brightness => {
+    if (Platform.OS === "android") {
 
-      /* 
-        Android devices have two types of brightnesses: "system brightness" and "app brightness". 
-        Only the "app brightness" can be changed from the react-native-device-brightness package.
-        Since "system brightness" can override the app brightness, 
-        the "app brightness" must be set to a different value every time it is changed in order for it to work.
-      */
+      getBrightnessLevel().then(brightness => {
 
-      const newBrightness = (brightness !== 1) ? 1 : 0.99;
-      setBrightnessLevel(newBrightness);
+        /* 
+          Android devices have two types of brightnesses: "system brightness" and "app brightness". 
+          Only the "app brightness" can be changed from the react-native-device-brightness package.
+          Since "system brightness" can override the app brightness, 
+          the "app brightness" must be set to a different value every time it is changed in order for it to work.
+        */
+  
+        const newBrightness = (brightness !== 1) ? 1 : 0.99;
+        setBrightnessLevel(newBrightness);
+  
+      }) 
 
-    });
+    } else {
+        
+        /* 
+          For some reason, the `setBrightnessLevel` does not always update the brightness correctly 
+          on iOS the same way it works on android, so using a "dirty hack" for fixing this.
+          This is probably caused by some kind of error between React Native and the native iOS module.
+        */
+
+        setBrightnessLevel(1).then(() => {
+          setBrightnessLevel(0.99)
+        })
+
+    };
 
   }, [isFocused]);
 
