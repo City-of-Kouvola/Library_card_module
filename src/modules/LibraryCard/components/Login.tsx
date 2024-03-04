@@ -62,7 +62,7 @@ export const Login = ({saveDetails}: IProps) => {
       }
       const responseJSON = await response.json();
       const holderName = `${responseJSON.firstname} ${responseJSON.surname}`;
-      saveDetails(inputCardNumber, holderName);      
+      saveDetails(inputCardNumber, holderName);    
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
