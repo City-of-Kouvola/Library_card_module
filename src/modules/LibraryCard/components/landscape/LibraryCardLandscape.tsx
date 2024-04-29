@@ -49,7 +49,7 @@ const LibraryCardLandscape = ({cardNumber, confirmLogout, holderName, isTimeout}
           style={styles.libraryCardImage}
           accessibilityRole={'image'}
           resizeMode={'contain'}
-          source={require('../../../assets/img/villirilli.png')}
+          source={require('../../../../assets/img/villirilli.png')}
         />
       </View>
     </View>
