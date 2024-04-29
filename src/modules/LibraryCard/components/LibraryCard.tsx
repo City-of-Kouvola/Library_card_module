@@ -78,7 +78,7 @@ export const LibraryCard = ({cardNumber, holderName, logout, isFocused}: IProps)
     ]);
   };
   
-  return (width > 375) ? (
+  return (width > 350) ? (
     <LibraryCardPortrait
       {...{cardNumber, confirmLogout, isTimeout, holderName}}
     />
