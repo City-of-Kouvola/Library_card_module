@@ -33,6 +33,7 @@ export const LibraryCard = ({cardNumber, holderName, logout, isFocused}: IProps)
   useEffect(() => {
 
     if (!isFocused) {
+      setBrightnessLevel(-1);
       return;
     }
 
