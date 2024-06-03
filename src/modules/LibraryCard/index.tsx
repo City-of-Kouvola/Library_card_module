@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, AccessibilityInfo,} from 'react-native';
+import {AccessibilityInfo} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LibraryCard, Login} from './components';
 import {locales} from '../../config/locales';
-import { setBrightnessLevel } from '@adrianso/react-native-device-brightness';
 
 export const LibraryCardModule = ({isFocused}: {isFocused?: boolean}) => {
   const [cardNumber, setCardNumber] = useState<string>('');
@@ -41,10 +40,10 @@ export const LibraryCardModule = ({isFocused}: {isFocused?: boolean}) => {
     }
   };
 
-  const logout = async () => {
+  const logout = async (resetBrightness: () => void) => {
     try {
       await AsyncStorage.multiRemove(['@cardNumber', '@holderName']);
-      await setBrightnessLevel(-1);
+      resetBrightness();
       setCardNumber('');
       setHolderName('');
       AccessibilityInfo.announceForAccessibility(locales.userLoggedOut.fi);
@@ -61,7 +60,7 @@ export const LibraryCardModule = ({isFocused}: {isFocused?: boolean}) => {
 
   if (cardNumber) {
     return (
-      <LibraryCard isFocused={isFocused} logout={() => logout()} {...{cardNumber, holderName}} />
+      <LibraryCard isFocused={isFocused} logout={logout} {...{cardNumber, holderName}} />
     );
   }
   if (isLoading) return <></>;
