@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Alert,
   AccessibilityInfo,
   Platform,
-  useWindowDimensions
+  useWindowDimensions,
+  AppState,
+  NativeEventSubscription,
 } from 'react-native';
 import {locales} from '../../../config/locales';
 import { getBrightnessLevel, setBrightnessLevel } from "@adrianso/react-native-device-brightness";
@@ -13,28 +15,84 @@ import LibraryCardLandscape from './landscape/LibraryCardLandscape';
 interface IProps {
   cardNumber: string;
   holderName?: string;
-  logout: () => void;
+  logout: (resetBrightness: () => void) => void;
   isFocused?: boolean;
 }
 
 export const LibraryCard = ({cardNumber, holderName, logout, isFocused}: IProps) => {
-
+  
   const [isTimeout, setIsTimeout] = useState(true)
+  const [oldBrightness, setOldBrightness] = useState<number>(1);
 
+  const appState = useRef(AppState.currentState);
+  const listener: React.MutableRefObject<NativeEventSubscription | null> = useRef(null);
+  
   const {width} = useWindowDimensions();
 
   useEffect(() => {
+
     AccessibilityInfo.announceForAccessibility(locales.userLoggedIn.fi);
     setTimeout(() => {
       setIsTimeout(false)
     }, 5000);
-  }, [])  
+
+  }, [])
+
+  useEffect(() => {
+
+    if (Platform.OS === "android") {
+      // android can handle the brightness on app state change automatically because it has separate app brightness and system brightness, 
+      // therefore it does not require the app state listeners like ios does
+      return;
+    }
+
+    if (!isFocused) {
+      resetBrightness();
+      return;
+    }
+
+    
+    listener.current = AppState.addEventListener('change', (nextAppState) => {
+
+      if (
+        appState.current.match(/active/) &&
+        nextAppState === 'background' || nextAppState === 'inactive'
+      ) {
+        setBrightnessLevel(oldBrightness);
+      } else if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === 'active'
+      ) {
+        setBrightnessLevel(1);
+      }
+  
+      appState.current = nextAppState;
+
+    });
+
+    return () => {
+      resetBrightness();
+    };
+
+  }, [isFocused, oldBrightness]);
+
+  const resetBrightness = () => {
+    if (listener.current) {
+      listener.current.remove()
+    }
+    setBrightnessLevel(oldBrightness); 
+  }
 
   useEffect(() => {
 
     if (!isFocused) {
+      resetBrightness();
       return;
     }
+
+    getBrightnessLevel().then(brightness => {
+      setOldBrightness(brightness);
+    });
 
     if (Platform.OS === "android") {
 
@@ -66,7 +124,7 @@ export const LibraryCard = ({cardNumber, holderName, logout, isFocused}: IProps)
 
     };
 
-  }, [isFocused]);
+  }, [isFocused, listener]);
 
   const confirmLogout = () => {
     Alert.alert(locales.confirmLogout.fi, '', [
@@ -74,7 +132,7 @@ export const LibraryCard = ({cardNumber, holderName, logout, isFocused}: IProps)
         text: locales.cancel.fi,
         style: 'cancel',
       },
-      {text: locales.confirm.fi, onPress: () => logout()},
+      {text: locales.confirm.fi, onPress: () => logout(resetBrightness)},
     ]);
   };
   
