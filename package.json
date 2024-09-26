@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@react-native-community/art": "^1.2.0",
-    "react-native-barcode-builder": "^2.0.0",
-    "react-native-svg": "^15.7.1"
+    "react-native-svg": "^15.7.1",
+    "@bwip-js/react-native":"^4.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
