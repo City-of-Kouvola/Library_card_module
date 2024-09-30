@@ -22,8 +22,8 @@ const LibraryCardPortrait = ({cardNumber, confirmLogout, holderName, isTimeout}:
         <BarCode
           text={cardNumber}
           width={1.65}
-          height={90}
-          bcid={cardNumber}
+          height={20}
+          bcid={'code39'}
         />
         </View>
         <Text style={styles.libraryCardDescription} accessible accessibilityRole={'text'}>

@@ -20,12 +20,12 @@ const LibraryCardLandscape = ({cardNumber, confirmLogout, holderName, isTimeout}
         <View style={styles.libraryCard}>
           <Text accessible={true} style={styles.holderName}>{holderName}</Text>
           <View accessible={true} accessibilityLabel={locales.libraryBarCode.fi} accessibilityRole={'image'}>
-              <BarCode
-                  text={cardNumber}
-                  width={2.2}
-                  height={90}
-                  bcid={cardNumber}
-              />
+            <BarCode
+                text={cardNumber}
+                width={100}
+                height={20}
+                bcid={'code39'}
+            />
           </View>
         </View>
         <Text style={styles.libraryCardDescription} accessible accessibilityRole={'text'}>

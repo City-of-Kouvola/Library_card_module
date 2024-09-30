@@ -1,6 +1,7 @@
-import bwipjs, { code39 } from '@bwip-js/react-native';
+import bwipjs, { toDataURL } from '@bwip-js/react-native';
 import { useEffect, useState } from 'react';
-import { Image } from 'react-native';
+import { Image, Text, View } from 'react-native';
+import { styles } from './landscape/styles';
 
 export const BarCode = (options: bwipjs.RenderOptions) => {
     const [barCode, setBarCode] = useState<React.JSX.Element>();
@@ -12,8 +13,9 @@ export const BarCode = (options: bwipjs.RenderOptions) => {
             let img = null;
 
             try {
-                img = await code39(options);
+                img = await toDataURL({...options});
             } catch (e) {
+                console.log(e)
                 // `e` may be a string or Error object
             }
 
@@ -27,11 +29,16 @@ export const BarCode = (options: bwipjs.RenderOptions) => {
             }
         }
 
-        if (options.bcid) generateBarCode()
-    },[options.bcid])
+        if (options.text) generateBarCode()
+    },[options.text, options.width, options.height])
     
 
     if(barCode) {
-        return barCode
+        return (
+            <View>
+                {barCode}
+                <Text style={styles.holderName}>{options.text}</Text>
+            </View>
+        )
     } else return <></>
 };
