@@ -1,7 +1,7 @@
 import { Image, Text, TouchableOpacity, View } from "react-native"
-import Barcode from "react-native-barcode-builder"
 import {locales} from '../../../../config/locales';
 import { styles } from "./styles";
+import { BarCode } from "../util";
 
 interface IPortraitProps {
   cardNumber: string;
@@ -19,13 +19,12 @@ const LibraryCardPortrait = ({cardNumber, confirmLogout, holderName, isTimeout}:
       <View style={styles.libraryCard}>
         <Text style={styles.holderName}>{holderName}</Text>
         <View accessibilityLabel={locales.libraryBarCode.fi} accessibilityRole={'image'}>
-          <Barcode
-            text={cardNumber}
-            width={1.65}
-            height={90}
-            value={cardNumber}
-            format={'CODE39'}
-          />
+        <BarCode
+          text={cardNumber}
+          width={1.65}
+          height={90}
+          bcid={cardNumber}
+        />
         </View>
         <Text style={styles.libraryCardDescription} accessible accessibilityRole={'text'}>
           {locales.libraryCardDescription.fi}

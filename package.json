@@ -1,6 +1,6 @@
 {
   "name": "library_card_module",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -15,7 +15,8 @@
     "react-native": ">=0.75.3"
   },
   "dependencies": {
-    "@bwip-js/react-native":"^4.5.1"
+    "@bwip-js/react-native":">=4.5.1",
+    "@adrianso/react-native-device-brightness":">=1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
