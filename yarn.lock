@@ -7,6 +7,11 @@
   resolved "https://registry.npmjs.org/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz"
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
+"@adrianso/react-native-device-brightness@>=1.2.0":
+  version "1.2.7"
+  resolved "https://registry.npmjs.org/@adrianso/react-native-device-brightness/-/react-native-device-brightness-1.2.7.tgz"
+  integrity sha512-q3OTFGohAh04R8cBka7/eNXaeSD8bAZocMsifLIR3oDF5N9cNH2UVEjzJaFXW8DHFEsODpljpT+eyGWIhKlkow==
+
 "@ampproject/remapping@^2.2.0":
   version "2.2.0"
   resolved "https://registry.npmjs.org/@ampproject/remapping/-/remapping-2.2.0.tgz"
@@ -5741,10 +5746,6 @@ react-is@^18.3.1:
   version "18.3.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.3.1.tgz"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
-
-"react-native-device-brightness@git+https://github.com:punosmobile/react-native-device-brightness":
-  version "1.2.7"
-  resolved "git+ssh://git@github.com/punosmobile/react-native-device-brightness.git#a179168498f2ff13ddb646a124a938b2dfb6460a"
 
 react-native@*, "react-native@^0.0.0-0 || >=0.65 <1.0", react-native@^0.75.3:
   version "0.75.3"
