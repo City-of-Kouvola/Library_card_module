@@ -1,7 +1,7 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 import { locales } from "../../../../config/locales";
-import Barcode from "react-native-barcode-builder";
+import { BarCode } from "../util";
 
 
 interface ILandscapeProps {
@@ -20,12 +20,11 @@ const LibraryCardLandscape = ({cardNumber, confirmLogout, holderName, isTimeout}
         <View style={styles.libraryCard}>
           <Text accessible={true} style={styles.holderName}>{holderName}</Text>
           <View accessible={true} accessibilityLabel={locales.libraryBarCode.fi} accessibilityRole={'image'}>
-            <Barcode
-              text={cardNumber}
-              width={2.2}
-              height={90}
-              value={cardNumber}
-              format={'CODE39'}
+            <BarCode
+                text={cardNumber}
+                width={100}
+                height={20}
+                bcid={'code39'}
             />
           </View>
         </View>
