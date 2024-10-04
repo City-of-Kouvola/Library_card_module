@@ -10,7 +10,7 @@ import {
 import {locales} from '../../../config/locales';
 import LibraryCardPortrait from './portrait/LibraryCardPortrait';
 import LibraryCardLandscape from './landscape/LibraryCardLandscape';
-import { setBrightnessLevel, getBrightnessLevel } from '@adrianso/react-native-device-brightness';
+import * as Brightness from 'expo-brightness';
 
 interface IProps {
   cardNumber: string;
@@ -39,6 +39,15 @@ export const LibraryCard = ({cardNumber, holderName, logout, isFocused}: IProps)
   }, [])
 
   useEffect(() => {
+    (async () => {
+      const { status } = await Brightness.requestPermissionsAsync();
+      if (status === 'granted') {
+        Brightness.setSystemBrightnessAsync(1);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
 
     if (Platform.OS === "android") {
       // android can handle the brightness on app state change automatically because it has separate app brightness and system brightness, 
@@ -58,12 +67,12 @@ export const LibraryCard = ({cardNumber, holderName, logout, isFocused}: IProps)
         appState.current.match(/active/) &&
         nextAppState === 'background' || nextAppState === 'inactive'
       ) {
-        setBrightnessLevel(oldBrightness);
+        Brightness.setSystemBrightnessAsync(oldBrightness);
       } else if (
         appState.current.match(/inactive|background/) &&
         nextAppState === 'active'
       ) {
-        setBrightnessLevel(1);
+        Brightness.setSystemBrightnessAsync(1);
       }
   
       appState.current = nextAppState;
@@ -80,7 +89,7 @@ export const LibraryCard = ({cardNumber, holderName, logout, isFocused}: IProps)
     if (listener.current) {
       listener.current.remove()
     }
-    setBrightnessLevel(oldBrightness); 
+    Brightness.setSystemBrightnessAsync(oldBrightness); 
   }
 
   useEffect(() => {
@@ -90,13 +99,13 @@ export const LibraryCard = ({cardNumber, holderName, logout, isFocused}: IProps)
       return;
     }
 
-    getBrightnessLevel().then(brightness => {
+    Brightness.getSystemBrightnessAsync().then(brightness => {
       setOldBrightness(brightness);
     });
 
     if (Platform.OS === "android") {
 
-      getBrightnessLevel().then(brightness => {
+      Brightness.getSystemBrightnessAsync().then(brightness => {
 
         /* 
           Android devices have two types of brightnesses: "system brightness" and "app brightness". 
@@ -106,7 +115,7 @@ export const LibraryCard = ({cardNumber, holderName, logout, isFocused}: IProps)
         */
   
         const newBrightness = (brightness !== 1) ? 1 : 0.99;
-        setBrightnessLevel(newBrightness);
+        Brightness.setSystemBrightnessAsync(newBrightness);
   
       }) 
 
@@ -118,8 +127,8 @@ export const LibraryCard = ({cardNumber, holderName, logout, isFocused}: IProps)
           This is probably caused by some kind of error between React Native and the native iOS module.
         */
 
-        setBrightnessLevel(1).then(() => {
-          setBrightnessLevel(0.99)
+          Brightness.setSystemBrightnessAsync(1).then(() => {
+            Brightness.setSystemBrightnessAsync(0.99)
         })
 
     };

@@ -1,4 +1,5 @@
 package com.library_card_module
+import expo.modules.ReactActivityDelegateWrapper
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
@@ -12,4 +13,10 @@ class MainActivity : ReactActivity() {
    * rendering of the component.
    */
   override fun getMainComponentName(): String = "Library_card_module"
+
+  override fun createReactActivityDelegate(): ReactActivityDelegate {
+    return ReactActivityDelegateWrapper(this, BuildConfig.IS_NEW_ARCHITECTURE_ENABLED,
+      ReactActivityDelegate(this, getMainComponentName())
+    );
+  }
 }

@@ -15,8 +15,9 @@
     "react-native": ">=0.75.3"
   },
   "dependencies": {
-    "@bwip-js/react-native":">=4.5.1",
-    "@adrianso/react-native-device-brightness":">=1.2.0"
+    "@bwip-js/react-native": ">=4.5.1",
+    "expo": "^51.0.0",
+    "expo-brightness": "~12.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
